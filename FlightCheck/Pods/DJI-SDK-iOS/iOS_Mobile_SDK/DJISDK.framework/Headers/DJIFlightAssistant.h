@@ -7,6 +7,7 @@
 
 #import <DJISDK/DJIBaseProduct.h>
 #import <DJISDK/DJIVisionTypes.h>
+#import <DJISDK/DJISDKFoundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -168,17 +169,17 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param enabled `YES` to enable the active avoidance.
  *  @param completion Completion block that receives the setter result.
  */
-- (void)setActiveObstacleAvoidanceEnabled:(BOOL)enabled withCompletion:(DJICompletionBlock)completion;
+- (void)setActiveObstacleAvoidanceEnabled:(BOOL)enabled withCompletion:(DJICompletionBlock)completion DJI_API_DEPRECATED("TODO:DJI Go Not Used, Not friendly for user.");
 
 
 /**
  *  Gets active obstacle avoidance status (enabled/disabled).
  *  
- *  @param enabled YES if active obstacle avoidance is enabled.
+ *  @param enabled `YES` if active obstacle avoidance is enabled.
  *  @param error Error retrieving the value.
  *  @param completion Completion block to receive the result.
  */
-- (void)getActiveObstacleAvoidanceEnabledWithCompletion:(void (^_Nonnull)(BOOL enabled, NSError *_Nullable error))completion;
+- (void)getActiveObstacleAvoidanceEnabledWithCompletion:(void (^_Nonnull)(BOOL enabled, NSError *_Nullable error))completion DJI_API_DEPRECATED("TODO:DJI Go Not Used, Not friendly for user.");
 
 
 /**

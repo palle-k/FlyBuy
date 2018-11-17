@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class DJIMediaManager;
 @class DJIPlaybackManager;
 @class DJICameraCapabilities;
+@class DJICameraWatermarkSettings;
 @class UIImage;
 
 
@@ -55,10 +56,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- *  Called when the camera's lens and focus state has been updated. This delegate
- *  method is only available when `isInterchangeableLensSupported` is `YES`.
+ *  Called when the camera's lens and focus state has been updated.
  *  
- *  @param camera Camera that sends out the updatd lens information.
+ *  @param camera Camera that sends out the updated lens information.
  *  @param lensState The camera's lens and focus state.
  */
 - (void)camera:(DJICamera *_Nonnull)camera didUpdateFocusState:(DJICameraFocusState *_Nonnull)lensState;
@@ -1415,7 +1415,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  Determines whether the camera supports an adjustable aperture. Currently
- *  adjustable aperture is supported only by the X5, X5R, X4S and X5S cameras.
+ *  adjustable aperture is supported only by the X5, X5R, X4S, X5S cameras and Mavic
+ *  2 Pro.
  *  
  *  @return A boolean value.
  */
@@ -1428,7 +1429,7 @@ NS_ASSUME_NONNULL_BEGIN
  *   Precondition:
  *   The exposure mode `DJICameraExposureMode` must be in
  *  `DJICameraExposureModeManual` or `DJICameraExposureModeAperturePriority`. </br>
- *  Supported only by the X5, X5R, X4S and X5S camera.
+ *  Supported only by the X5, X5R, X4S, X5S camera and Mavic 2 Pro.
  *  
  *  @param aperture The aperture to set. See DJICameraLensFocusMode.
  *  @param completion The execution callback with the returned execution result.
@@ -1450,7 +1451,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Determines whether the camera supports an adjustable focal point. Currently, the
  *  adjustable focal point is supported by the X5, X5R, Z3, Mavic Pro camera, Z30,
- *  Phantom 4 Pro camera, X4S, X5S, Mavic 2 Pro and Mavic 2 Zoom Camera.
+ *  Phantom 4 Pro camera, X4S, X5S, Mavic 2 Pro, Mavic 2 Zoom Camera and and Mavic 2
+ *  Enterprise Camera.
  *  
  *  @return A boolean value.
  */
@@ -1461,8 +1463,8 @@ NS_ASSUME_NONNULL_BEGIN
  *  Sets the lens focus mode. See `DJICameraFocusMode`. It is available only when
  *  `isAdjustableFocalPointSupported` returns `YES`. Supported by the X5, X5R, Z3
  *  cameras (Z3 camera can only support `DJICameraFocusModeAuto`), the Mavic Pro
- *  camera, Z30, Phantom 4 Pro camera, X4S, X5S, Mavic 2 Pro and Mavic 2 Zoom
- *  Camera.
+ *  camera, Z30, Phantom 4 Pro camera, X4S, X5S, Mavic 2 Pro, Mavic 2 Zoom Camera
+ *  and Mavic 2 Enterprise Camera.
  *  
  *  @param focusMode Focus mode to set. Check `DJICameraFocusMode` for more detail.
  *  @param completion The execution callback with the returned execution result.
@@ -1474,7 +1476,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  Gets the lens focus mode. Please check `DJICameraFocusMode`. It is available
  *  only when `isAdjustableFocalPointSupported` returns `YES`. Supported only by the
  *  X5, X5R, Z3 cameras, Mavic Pro camera, Z30, Phantom 4 Pro camera, X4S, X5S,
- *  Mavic 2 Pro and Mavic 2 Zoom Camera.
+ *  Mavic 2 Pro,  Mavic 2 Zoom Camera and Mavic 2 Enterprise Camera.
  *  
  *  @param focusMode The value of the `DJICameraFocusMode` Enum.
  *  @param error Error retrieving the value.
@@ -1488,8 +1490,8 @@ NS_ASSUME_NONNULL_BEGIN
  *  is the focal point. When the focus mode is manual, the target point is the zoom
  *  out area if the focus assistant is enabled for the manual mode. It is available
  *  only when `isAdjustableFocalPointSupported` returns `YES`. Supported only by the
- *  X5, X5R, Z3 cameras, Mavic Pro camera, Phantom 4 Pro camera, Mavic 2 Pro and
- *  Mavic 2 Zoom Camera. camera, X4S and X5S.
+ *  X5, X5R, Z3 cameras, Mavic Pro camera, Phantom 4 Pro camera, Mavic 2 Pro, Mavic
+ *  2 Zoom Camera, Mavic 2 Enterprise Camera, X4S and X5S. camera, X4S and X5S.
  *  
  *  @param focusTarget The focus target to set. The range for x and y is from 0.0 to 1.0. The point [0.0, 0.0] represents the top-left angle of the screen.
  *  @param completion The execution callback with the returned execution result.
@@ -1500,8 +1502,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Gets the lens focus target point. It is available only when
  *  `isAdjustableFocalPointSupported` returns `YES`. Supported only by the X5, X5R,
- *  Z3 cameras, Mavic Pro camera and Phantom 4 Pro camera, X4S, X5S, Mavic 2 Pro and
- *  Mavic 2 Zoom Camera.
+ *  Z3 cameras, Mavic Pro camera and Phantom 4 Pro camera, X4S, X5S, Mavic 2 Pro,
+ *  Mavic 2 Zoom Camera and Mavic 2 Enterprise Camera.
  *  
  *  @param focusTarget The CGPoint struct.
  *  @param error Error retrieving the value.
@@ -1545,7 +1547,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Gets the lens focusing ring value's max value. It is available only when
  *  `isAdjustableFocalPointSupported` returns `YES`. Supported only by the X5, X5R,
- *  Z3 cameras, Phantom 4 Pro camera, X4S, X5S, Mavic 2 Pro and Mavic 2 Zoom Camera.
+ *  Z3 cameras, Phantom 4 Pro camera, X4S, X5S, Mavic 2 Pro, Mavic 2 Zoom Camera and
+ *  Mavic 2 Enterprise Camera.
  *  
  *  @param upperBound The upperBound value.
  *  @param error Error retrieving the value.
@@ -1566,7 +1569,8 @@ NS_ASSUME_NONNULL_BEGIN
  *  `getFocusRingValueWithCompletion` to get the current focus ring value. This is
  *  the minimum value. The maximum value can be retrieved using
  *  `getFocusRingValueUpperBoundWithCompletion`. Supported only by X5, X5R, Z3
- *  cameras, Phantom 4 Pro, X4S, X5S, Mavic 2 Pro and Mavic 2 Zoom Camera.
+ *  cameras, Phantom 4 Pro, X4S, X5S, Mavic 2 Pro, Mavic 2 Zoom Camera  and Mavic 2
+ *  Enterprise Camera.
  *  
  *  @param value Value to adjust focus ring to. The minimum value is 0, the maximum value depends on the installed lens. Please use method `getFocusRingValueUpperBoundWithCompletion` to ensure the input argument is valid.
  *  @param completion The execution callback with the returned execution result.
@@ -1577,7 +1581,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Gets the lens focus ring value. It is available only when
  *  `isAdjustableFocalPointSupported` returns `YES`. Supported only by the X5, X5R,
- *  Z3 cameras, Phantom 4 Pro, X4S, X5S, Mavic 2 Pro and Mavic 2 Zoom Camera.
+ *  Z3 cameras, Phantom 4 Pro, X4S, X5S, Mavic 2 Pro, Mavic 2 Zoom Camera, Mavic 2
+ *  Enterprise Camera.
  *  
  *  @param distance The distance value.
  *  @param error Error retrieving the value.
@@ -1687,8 +1692,9 @@ NS_ASSUME_NONNULL_BEGIN
  *  be written to all media files until the information is changed again by this
  *  method. Custom information written to each file can be retrieved through
  *  `fetchCustomInformationWithCompletion`  or from the image itself when processed
- *  on a separate system. It is only supported Phantom 4 Pro, Phantom 4 Advanced and
- *  Inspire 2 with firmware released after May 23 2017.
+ *  on a separate system. It is only supported Phantom 4 Pro, Phantom 4  Advanced,
+ *  Phantom 4 Pro V2.0, Zenmuse X4S, Zenmuse X5S, Zenmuse X7 and Mavic 2 Enterprise
+ *  camera.
  *  
  *  @param information Custom information to set. Use UTF-8 encoding with a length equal to or less than 31 characters.
  *  @param completion Completion block to receive the result.
@@ -1701,7 +1707,8 @@ NS_ASSUME_NONNULL_BEGIN
  *  retrieves the information that will be written to future media files. The
  *  information written to individual files can be retrieved through
  *  `fetchCustomInformationWithCompletion`. It is only supported Phantom 4 Pro,
- *  Phantom 4 Advanced and Inspire 2 with firmware released after May 23 2017.
+ *  Phantom 4 Advanced, Phantom 4 Pro V2.0, Zenmuse X4S, Zenmuse X5S, Zenmuse X7 and
+ *  Mavic 2 Enterprise camera.
  *  
  *  @param information The custom information to write.
  *  @param error The encountered error if any.
@@ -2280,6 +2287,33 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param completion Completion block to receive the result.
  */
 - (void)getAutoLockGimbalEnabledWithCompletion:(void (^_Nonnull)(BOOL enabled, NSError *_Nullable error))completion;
+
+/*********************************************************************************/
+#pragma mark - Watermark
+/*********************************************************************************/
+
+
+/**
+ *  Sets the watermark configuration. Enables this to add timestamp and location
+ *  stamp to  the newly generated photos or videos. It is only supported by Mavic 2
+ *  Enterprise.
+ *  
+ *  @param config The watermark configuration to set.
+ *  @param completion Completion block to receive the result.
+ */
+- (void)setWatermarkSettings:(DJICameraWatermarkSettings *)config withCompletion:(DJICompletionBlock)completion;
+
+
+/**
+ *  Gets the watermark settings. If it is enabled, timestamp and location stamp will
+ *  be  added to the newly generated photos or videos. It is only supported by Mavic
+ *  2 Enterprise.
+ *  
+ *  @param settings The watermark settings to set.
+ *  @param error Error retrieving the value.
+ *  @param completion Completion block to receive the result.
+ */
+- (void)getWatermarkSettingsWithCompletion:(void (^_Nonnull)(DJICameraWatermarkSettings *settings, NSError *_Nullable error))completion;
 
 @end
 
@@ -3005,6 +3039,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param completion Completion block to receive the result.
  */
 - (void)getDualFeedHorizontalAlignmentOffsetWithCompletion:(void (^_Nonnull)(int8_t offset, NSError *_Nullable error))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

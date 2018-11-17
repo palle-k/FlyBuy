@@ -556,19 +556,19 @@ typedef NS_ENUM (NSUInteger, DJICameraVideoFOV){
     /**
      *  The default FOV. Use this value if the FOV is not configurable for the camera.
      */
-    DJICameraVideoFOVDefault = 0,
+    DJICameraVideoFOVDefault,
     
 
     /**
      *  Use a narrow FOV to record videos.
      */
-    DJICameraVideoFOVNarrow = 2,
+    DJICameraVideoFOVNarrow,
     
 
     /**
      *  Use a wide FOV to record videos.
      */
-    DJICameraVideoFOVWide = 3,
+    DJICameraVideoFOVWide,
 
 
     /**
@@ -2200,6 +2200,37 @@ typedef NS_ENUM (NSUInteger, DJICameraAntiFlickerFrequency){
 };
 
 /*********************************************************************************/
+#pragma mark - Exposure Status
+/*********************************************************************************/
+
+
+/**
+ *  Camera exposure state.
+ */
+typedef NS_ENUM(NSUInteger, DJICameraExposureState) {
+
+    /**
+     *  The camera exposure state is normal.
+     */
+    DJICameraExposureStateNormal,
+
+    /**
+     *  The camera exposure state is underexposed.
+     */
+    DJICameraExposureStateUnderexposed,
+
+    /**
+     *  The camera exposure state is overexposed.
+     */
+    DJICameraExposureStateOverexposed,
+
+    /**
+     *  The camera exposure state is unknown.
+     */
+    DJICameraExposureStateUnknown = 0xFF,
+};
+
+/*********************************************************************************/
 #pragma mark - DJICameraExposureSettings
 /*********************************************************************************/
 
@@ -2266,6 +2297,12 @@ typedef struct{
 	 *  `DJICameraExposureSensitivityModeEI`.
 	 */
 	NSUInteger EI;
+    
+
+    /**
+     *  The camera exposure state.
+     */
+    DJICameraExposureState exposureState;
 }DJICameraExposureSettings;
 
 /*********************************************************************************/
@@ -2688,8 +2725,8 @@ typedef NS_ENUM (NSUInteger, DJICameraSSDCapacity) {
  *  DJI camera's license keys. An Inspire 2 License Key activates the usage
  *  permission of CinemaDNG or Apple ProRes inside CineCore 2.0. License keys are
  *  obtained by by purchase from the DJI store website using the Inspire 2 serial
- *  number. The Inspire 2 is then connected to DJI Assistant 2, and the  license
- *  keys downloaded to it. It is only supported X5S camera.
+ *  number. The Inspire 2 is then connected to DJI Assistant 2, and the license keys
+ *  downloaded to it. It is only supported X5S and X7 cameras.
  */
 typedef NS_ENUM (NSUInteger, DJICameraSSDVideoLicense) {
 
@@ -4512,6 +4549,43 @@ typedef NS_ENUM (NSUInteger, DJICameraStorageLocation){
  *  @param format The format to save the original images.
  */
 - (instancetype)initWithSavingOriginalImagesEnabled:(BOOL)shouldSaveOriginalPhotos andFormat:(DJICameraPhotoFileFormat)format;
+
+@end
+
+/*********************************************************************************/
+#pragma mark DJICameraWatermarkSettings
+/*********************************************************************************/
+
+/**
+ *  The watermark configuration to decide if timestamp and location stamp will be
+ *  added to photos or videos.
+ */
+@interface DJICameraWatermarkSettings : NSObject
+
+
+/**
+ *  `YES` if the timestamp and the location stamp is added to photos.
+ */
+@property (nonatomic, readonly) BOOL enabledForPhotos;
+
+
+/**
+ *  `YES` if the timestamp and the location stamp is added to videos. The stamps are
+ *  updated during the videos.
+ *  
+ *  @return `YES` if the watermark (timestamp and location stamp) is enabled for videos.
+ */
+@property (nonatomic, readonly) BOOL enabledForVideos;
+
+
+/**
+ *  Creates an instance of the settings to control the watermark on photos and
+ *  videos.
+ *  
+ *  @param enabledForPhotos Enables the feature for photos.
+ *  @param enabledForVideos Enables the feature for videos.
+ */
+- (instancetype)initWithForPhotos:(BOOL)enabledForPhotos andForVideos:(BOOL)enabledForVideos;
 
 @end
 

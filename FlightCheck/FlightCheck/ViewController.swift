@@ -9,6 +9,8 @@
 import UIKit
 import DJIWidget
 import DJISDK
+import Moya
+import Alamofire
 
 
 class ViewController: UIViewController {
@@ -29,7 +31,6 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		DJIVideoPreviewer.instance().setView(view)
-		
 //		navigator.onExecuteCommand = { [weak self] command in
 //			guard let `self` = self else {
 //				return

@@ -165,7 +165,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  The gimbal pitch can be fine tuned with a custom offset. The range for the
  *  custom offset is [-2.0, 2.0] degrees. If the offset is negative, the gimbal will
  *  be fine tuned the specified number of degrees in the counterclockwise direction.
- *  It is only supported by Spark.
+ *  It is only supported by Spark and Mavic 2 Series.
  *  
  *  @param offset Fine-tuned offset, in degrees, to be tuned.
  *  @param completion Completion block.
@@ -177,7 +177,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  The gimbal yaw can be fine tuned with a custom offset. The range for the custom
  *  offset is [-2.0, 2.0] degrees. If the offset is negative, the gimbal will be
  *  fine tuned the specified number of degrees in the counterclockwise direction. It
- *  is only supported by Mavic Air.
+ *  is only supported by Mavic Air and Mavic 2 Series.
  *  
  *  @param offset Fine-tuned offset, in degrees, to be tuned.
  *  @param completion Completion block.
@@ -750,10 +750,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- *  Resets gimbal position to selfie setup. If the gimbal yaw is not at 180 degrees,
- *  then calling this method will rotate the gimbal yaw to 180 degrees (effectively
- *  pointing the camera to the person holding the gimbal). If the gimbal yaw is at
- *  180 degrees, then the gimbal will rotate in yaw to 0 degrees.
+ *  Resets gimbal position to selfie setup. If the gimbal yaw is not at 180
+ *  degrees, then calling this method will rotate the gimbal yaw to 180  degrees
+ *  (effectively pointing the camera to the person holding the gimbal).  If the
+ *  gimbal yaw is at 180 degrees, then the gimbal will rotate in yaw to 0 degrees.
+ *  It's only supported by DJI OSMO, OSMO Pro and OSMO Raw.
  *  
  *  @param completion The completion block that receives execution result.
  */

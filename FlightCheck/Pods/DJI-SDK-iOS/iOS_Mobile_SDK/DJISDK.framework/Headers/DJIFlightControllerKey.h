@@ -50,6 +50,11 @@ EXTERN_KEY NSString *const DJIFlightAssistantParamVisionDetectionNoseState;
 EXTERN_KEY NSString *const DJIFlightAssistantParamVisionDetectionTailState;
 EXTERN_KEY NSString *const DJIFlightAssistantParamVisionDetectionRightState;
 EXTERN_KEY NSString *const DJIFlightAssistantParamVisionDetectionLeftState;
+EXTERN_KEY NSString *const DJIFlightAssistantParamVisionLeftRightSensorEnabled;
+EXTERN_KEY NSString *const DJIFlightAssistantParamVisionNoseTailSensorEnabled;
+
+EXTERN_KEY NSString *const DJIFlightAssistantParamAdvancedPilotAssistanceSystemEnabled;
+EXTERN_KEY NSString *const DJIFlightAssistantParamIsAdvancedPilotAssistanceSystemActive;
 
 EXTERN_KEY NSString *const DJIFlightControllerParamIsFlying;
 EXTERN_KEY NSString *const DJIFlightControllerParamFlightMode;
@@ -69,7 +74,9 @@ EXTERN_KEY NSString *const DJIFlightControllerParamCancelAutoLanding;
 EXTERN_KEY NSString *const DJIFlightControllerParamAreMotorsOn;
 
 EXTERN_KEY NSString *const DJIFlightControllerParamMaxFlightHeight;
+EXTERN_KEY NSString *const DJIFlightControllerParamMaxFlightHeightRange;
 EXTERN_KEY NSString *const DJIFlightControllerParamMaxFlightRadius;
+EXTERN_KEY NSString *const DJIFlightControllerParamMaxFlightRadiusRange;
 EXTERN_KEY NSString *const DJIFlightControllerParamMaxFlightRadiusEnabled;
 
 EXTERN_KEY NSString *const DJIFlightControllerParamGoHome;
@@ -176,6 +183,7 @@ EXTERN_KEY NSString *const DJIFlightControllerParamIsSimulatorActive;
 EXTERN_KEY NSString *const DJIFlightControllerParamStartSimulator;
 EXTERN_KEY NSString *const DJIFlightControllerParamStopSimulator;
 EXTERN_KEY NSString *const DJIFlightControllerParamSimulatorFlyZoneLimitationEnabled;
+EXTERN_KEY NSString *const DJIFlightControllerParamSimulatorWindSpeed;
 
 // RTK
 EXTERN_KEY NSString *const DJIFlightControllerParamRTKSupported;
@@ -204,8 +212,25 @@ EXTERN_KEY NSString *const DJIFlightControllerParamRTKIsHeadingValid;
 EXTERN_KEY NSString *const DJIFlightControllerParamIsRTKBeingUsed;
 
 // capability
+EXTERN_KEY NSString *const DJIFlightControllerParamCinematicBrakeSensitivity;
 EXTERN_KEY NSString *const DJIFlightControllerParamCinematicBrakeSensitivityRange;
+EXTERN_KEY NSString *const DJIFlightControllerParamCinematicYawSpeed;
 EXTERN_KEY NSString *const DJIFlightControllerParamCinematicYawSpeedRange;
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Access Locker
+////////////////////////////////////////////////////////////////////////////////
+
+EXTERN_KEY NSString *const DJIFlightControllerAccessLockerSubComponent;
+EXTERN_KEY NSString *const DJIAccessLockerParamVersion;
+EXTERN_KEY NSString *const DJIAccessLockerParamState;
+EXTERN_KEY NSString *const DJIAccessLockerParamUsername;
+EXTERN_KEY NSString *const DJIAccessLockerParamSetUpUserAccount;
+EXTERN_KEY NSString *const DJIAccessLockerParamLogin;
+EXTERN_KEY NSString *const DJIAccessLockerParamModifyUserAccount;
+EXTERN_KEY NSString *const DJIAccessLockerParamResetUserAccount;
+EXTERN_KEY NSString *const DJIAccessLockerParamFormat;
+EXTERN_KEY NSString *const DJIAccessLockerParamFormatState;
 
 
 /**

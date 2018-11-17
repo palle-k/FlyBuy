@@ -1,20 +1,34 @@
 PODS:
-  - DJI-SDK-iOS (4.7.1)
-  - DJIWidget (1.1)
+  - Alamofire (4.7.3)
+  - DJI-SDK-iOS (4.8.1)
+  - DJIWidget (1.2)
+  - Moya (11.0.2):
+    - Moya/Core (= 11.0.2)
+  - Moya/Core (11.0.2):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Result (3.2.4)
 
 DEPENDENCIES:
   - DJI-SDK-iOS
   - DJIWidget
+  - Moya
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - DJI-SDK-iOS
     - DJIWidget
+    - Moya
+    - Result
 
 SPEC CHECKSUMS:
-  DJI-SDK-iOS: 61190de33ed627dee3171f40146386c31b1d6c09
-  DJIWidget: 84a10f046a34ba3115641bcabf5b11a14edb4774
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  DJI-SDK-iOS: 513ed6e823465e15af74a77b228506ab5138691b
+  DJIWidget: 4559d2f4ccaa499a7bd2cdc98658f35d78d20357
+  Moya: a725035953bc1c0eb1be505ab903984501d82440
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
 
-PODFILE CHECKSUM: 70da6eaaedd1a6613707514e0223b53bd6a71691
+PODFILE CHECKSUM: 2f1233a4ff29f2c9d89bc368ca4bc3c6c0c05982
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.2

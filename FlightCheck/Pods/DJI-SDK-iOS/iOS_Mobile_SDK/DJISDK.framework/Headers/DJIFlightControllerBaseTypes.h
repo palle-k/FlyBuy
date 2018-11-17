@@ -861,4 +861,30 @@ typedef NS_ENUM(NSUInteger, DJIFlightWindWarning) {
 
 @end
 
+
+/**
+ *  DJI Simulator Wind Speed.
+ */
+@interface DJISimulatorWindSpeed : NSObject
+
+
+/**
+ *  DJI Simulator Wind Speed X value.
+ */
+@property (nonatomic, assign) NSUInteger windSpeedX;
+
+
+/**
+ *  DJI Simulator Wind Speed Y value.
+ */
+@property (nonatomic, assign) NSUInteger windSpeedY;
+
+
+/**
+ *  DJI Simulator Wind Speed Z value.
+ */
+@property (nonatomic, assign) NSUInteger windSpeedZ;
+
+@end
+
 #endif /* DJIFlightControllerBaseTypes_h */

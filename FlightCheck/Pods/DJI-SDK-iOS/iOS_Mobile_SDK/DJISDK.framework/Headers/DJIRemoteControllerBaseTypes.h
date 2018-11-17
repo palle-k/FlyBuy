@@ -581,8 +581,8 @@ typedef struct
     
 
     /**
-     *  Wheel value in the range of [0, 1320]. The value represents the difference in an
-     *  operation.
+     *  Wheel value in the range of [-660, 660]. The value represents the difference in
+     *  an operation.
      */
     NSInteger value;
 } DJIRCRightWheel;
@@ -1131,6 +1131,15 @@ typedef struct
  *  numbers.
  */
 @property(nonatomic, readonly) NSString *authorizationCode;
+
+
+/**
+ *  `YES` if the remote controller has gimbal control.  Call
+ *  `requestGimbalControlWithCompletion` to attain the gimbal control.
+ *  
+ *  @return `YES` if the remote controller has gimbal control.
+ */
+@property(nonatomic, readonly) BOOL hasGimbalControl;
 
 @end
 

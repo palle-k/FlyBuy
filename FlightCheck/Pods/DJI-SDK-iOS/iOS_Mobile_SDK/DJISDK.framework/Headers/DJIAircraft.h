@@ -11,6 +11,7 @@
 @class DJIFlightController;
 @class DJIRemoteController;
 @class DJIMobileRemoteController;
+@class DJIAccessoryAggregation;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -179,6 +180,12 @@ extern NSString *const DJIAircraftModelNameMavic2;
 
 
 /**
+ *  The aircraft's model name is Mavic 2 Enterprise.
+ */
+extern NSString *const DJIAircraftModelNameMavic2Enterprise;
+
+
+/**
  *  The display name when only the remote controller is connected.
  */
 extern NSString *const DJIAircraftModeNameOnlyRemoteController;
@@ -248,6 +255,13 @@ extern NSString *const DJIAircraftModeNameOnlyRemoteController;
  *  The connected payload instance.
  */
 @property(nonatomic, readonly) DJIPayload *_Nullable payload;
+
+
+/**
+ *  The container of accessories on the aircraft. It is accessible when the
+ *  connected  aircraft supports extra accessories.
+ */
+@property(nonatomic, readonly) DJIAccessoryAggregation *_Nullable accessoryAggregation;
 
 
 /**

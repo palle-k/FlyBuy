@@ -643,6 +643,21 @@ typedef NS_ENUM(NSInteger, DJIBottomAuxiliaryLightMode) {
      *  The auxiliary light is off.
      */
     DJIBottomAuxiliaryLightModeOff,
+    
+
+    /**
+     *  Beacon mode. In this mode, the auxiliary light will have different  behaviors in
+     *  different conditions:
+     *  - When the aircraft just takes off,  the auxiliary light will have the same
+     *  behavior  as ''DJIBottomAuxiliaryLightMode_Auto''.
+     *  - When the aircraft ascends  above 5.5 meters, the auxiliary light starts to
+     *  blink in 1Hz.
+     *  - When  the aircraft descends below 4.5 meters, the auxiliary light will have
+     *  the  same behavior as ''DJIBottomAuxiliaryLightMode_Auto''. This mode is only
+     *  supported by Mavic 2 Enterprise.
+     */
+    DJIBottomAuxiliaryLightModeBeacon,
+
 
     /**
      *  Unknown.
