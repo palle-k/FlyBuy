@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum UploadService {
-    case uploadImage(name: String, session_id: Int, img: UIImage)
+    case uploadImage(name: String, session_id: Int, img: UIImage, pos: Position3D)
     case start()
     case stop(session_id: Int)
     case getFlightPath(path_id: Int)
@@ -37,7 +37,7 @@ extension UploadService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .uploadImage(_, _, _, _, _), .start(), .stop(_):
+        case .uploadImage(_, _, _, _), .start(), .stop(_):
             return .post
         case .getFlightPath(_):
             return .get
@@ -51,7 +51,7 @@ extension UploadService: TargetType {
     var task: Task {
         // TODO
         switch self {
-        case let .uploadImage(name, session_id, img):
+        case let .uploadImage(name, session_id, img, pos):
             return Task.requestParameters(parameters: ["name": name, "session_id": session_id, "img": img], encoding: URLEncoding.queryString)
         case .start():
             return Task.requestParameters(parameters: [:], encoding: URLEncoding.queryString)
