@@ -7,4 +7,5 @@ target 'FlightCheck' do
 
   # Pods for FlightCheck
   pod 'DJI-SDK-iOS'
+  pod 'DJIWidget'
 end

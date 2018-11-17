@@ -9,7 +9,7 @@
 import Foundation
 import CoreImage
 import DJISDK
-import VideoPreviewer
+import DJIWidget
 
 protocol DroneImageListener: class {
     func accept(newImage image: CGImage)
@@ -18,7 +18,7 @@ protocol DroneImageListener: class {
 extension DroneManager {
     func setUpDroneImageProvider() {
         DJISDKManager.videoFeeder()?.primaryVideoFeed.add(self, with: nil)
-        VideoPreviewer.instance().start()
+        DJIVideoPreviewer.instance().start()
         
         drone?.camera?.setExposureMode(.manual, withCompletion: { _ in
             self.drone?.camera?.setISO(.ISO6400)
@@ -38,12 +38,12 @@ extension DroneManager: DJIVideoFeedListener {
     func videoFeed(_ videoFeed: DJIVideoFeed, didUpdateVideoData videoData: Data) {
         videoData.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) in
             let mutablePointer = UnsafeMutablePointer(mutating: pointer)
-            VideoPreviewer.instance().push(mutablePointer, length: Int32(videoData.count))
+            DJIVideoPreviewer.instance().push(mutablePointer, length: Int32(videoData.count))
             self.frameCounter += 1
 //            guard frameCounter % 10 == 0 else {
 //                return
 //            }
-			VideoPreviewer.instance().snapshotPreview({ (image) in
+			DJIVideoPreviewer.instance().snapshotPreview({ (image) in
 				guard let image = image else {
 					return
 				}

@@ -8,7 +8,7 @@
 
 import Foundation
 import DJISDK
-import VideoPreviewer
+import DJIWidget
 
 enum DroneStatus {
     case disconnected, connected(drone: DJIAircraft)
