@@ -20,10 +20,11 @@ extension DroneManager {
         DJISDKManager.videoFeeder()?.primaryVideoFeed.add(self, with: nil)
         DJIVideoPreviewer.instance().start()
         
-        drone?.camera?.setExposureMode(.manual, withCompletion: { _ in
-            self.drone?.camera?.setISO(.ISO6400)
-        })
-        
+//        drone?.camera?.setExposureMode(.manual, withCompletion: { _ in
+//            self.drone?.camera?.setISO(.ISO6400)
+//        })
+		
+		
         // Setup Camera to look down
         DJISDKManager.product()?.gimbal?.rotate(with: DJIGimbalRotation.init(pitchValue: -90,
                                                                              rollValue: 0,

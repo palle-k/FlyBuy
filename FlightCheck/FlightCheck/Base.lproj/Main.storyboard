@@ -17,12 +17,127 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwg-So-c8r">
+                                <rect key="frame" x="8" y="323" width="160" height="44"/>
+                                <color key="backgroundColor" red="0.00063899887030000003" green="0.63360309599999998" blue="0.99999994039999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="7p3-tJ-cJw"/>
+                                    <constraint firstAttribute="width" constant="160" id="gOi-Ph-IE9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Lift Off">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="beginFlight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8H9-LB-gAz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32u-0P-1Y3">
+                                <rect key="frame" x="499" y="323" width="160" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.055541899059999997" blue="0.055541899059999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="2e7-eg-4vV"/>
+                                    <constraint firstAttribute="height" constant="44" id="zSK-k5-Sq4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Land">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="landDrone:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RRx-fd-YxV"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no command" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSs-tg-Zcz">
+                                <rect key="frame" x="557" y="8" width="102" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="unknown position" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQv-yE-fqF">
+                                <rect key="frame" x="8" y="8" width="138" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dbt-5V-9Pz">
+                                <rect key="frame" x="255.5" y="328" width="156" height="34"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQo-wX-u6Y">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="34"/>
+                                        <color key="backgroundColor" red="1" green="0.63026221010000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="AcL-nm-jt3"/>
+                                            <constraint firstAttribute="height" constant="34" id="uWg-gm-V5i"/>
+                                        </constraints>
+                                        <state key="normal" title="Down">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="17"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="cameraDown:" destination="BYZ-38-t0r" eventType="touchUpInside" id="acL-ak-OA2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U2i-mH-idN">
+                                        <rect key="frame" x="86" y="0.0" width="70" height="34"/>
+                                        <color key="backgroundColor" red="1" green="0.63026221010000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="Wqx-MO-hmH"/>
+                                            <constraint firstAttribute="width" constant="70" id="bJC-0J-5ZJ"/>
+                                        </constraints>
+                                        <state key="normal" title="Forward">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="17"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="cameraForward:" destination="BYZ-38-t0r" eventType="touchUpInside" id="px2-JH-EpQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hSs-tg-Zcz" secondAttribute="trailing" constant="8" id="13u-fN-sw7"/>
+                            <constraint firstItem="JQv-yE-fqF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="4kP-jL-eKU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="32u-0P-1Y3" secondAttribute="trailing" constant="8" id="LXJ-Nn-si7"/>
+                            <constraint firstItem="hSs-tg-Zcz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JQv-yE-fqF" secondAttribute="trailing" constant="20" id="R1P-kH-LMh"/>
+                            <constraint firstItem="pwg-So-c8r" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="ZM2-gX-TPC"/>
+                            <constraint firstItem="hSs-tg-Zcz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="cJk-gU-cUb"/>
+                            <constraint firstItem="dbt-5V-9Pz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fU6-i3-KK9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="32u-0P-1Y3" secondAttribute="bottom" constant="8" id="gwZ-w0-DJH"/>
+                            <constraint firstItem="dbt-5V-9Pz" firstAttribute="centerY" secondItem="32u-0P-1Y3" secondAttribute="centerY" id="izn-OG-ux8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pwg-So-c8r" secondAttribute="bottom" constant="8" id="jRb-bG-7qu"/>
+                            <constraint firstItem="JQv-yE-fqF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="u9f-bQ-VOg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="commandLabel" destination="hSs-tg-Zcz" id="u1n-8g-FBp"/>
+                        <outlet property="positionLabel" destination="JQv-yE-fqF" id="64f-Pn-05t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="30.134932533733135" y="48.799999999999997"/>
         </scene>
     </scenes>
 </document>

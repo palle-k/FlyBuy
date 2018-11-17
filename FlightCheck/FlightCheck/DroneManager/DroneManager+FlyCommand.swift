@@ -162,43 +162,41 @@ extension DroneManager {
         flightController.setVirtualStickModeEnabled(true)
         flightController.rollPitchCoordinateSystem = .body
         flightController.setFlightOrientationMode(.aircraftHeading)
-		flightController.flightAssistant?.setActiveObstacleAvoidanceEnabled(false, withCompletion: nil)
-		flightController.flightAssistant?.setCollisionAvoidanceEnabled(false, withCompletion: nil)
+		flightController.flightAssistant?.setActiveObstacleAvoidanceEnabled(true, withCompletion: nil)
+		flightController.flightAssistant?.setCollisionAvoidanceEnabled(true, withCompletion: nil)
 		flightController.setVisionAssistedPositioningEnabled(true, withCompletion: nil)
-		flightController.flightAssistant?.setUpwardsAvoidanceEnabled(false, withCompletion: nil)
+		flightController.flightAssistant?.setUpwardsAvoidanceEnabled(true, withCompletion: nil)
     }
     
     func liftoffDrone(completion: ((Error?) -> ())? = nil) {
+		print("[WARNING] Liftoff Enabled")
+		
 		DispatchQueue.main.async {
 			guard let flightController = self.drone?.flightController else {
 				return
 			}
-            
-            DJISDKManager.product()?.gimbal?.rotate(with: DJIGimbalRotation.init(pitchValue: -90,
-                                                                                 rollValue: 0,
-                                                                                 yawValue: 0,
-                                                                                 time: 1.0,
-                                                                                 mode: DJIGimbalRotationMode.absoluteAngle))
-			
-			let delayedStartingCompletion = {(error: Error?) -> () in
-				Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false, block: {_ in
-					
-					DroneFlyController.sharedCommandTimer?.invalidate()
-					DroneFlyController.sharedCommandTimer = Timer.scheduledTimer(withTimeInterval: 1.0/Double(DroneFlyController.commandsPerSecond),
-																				 repeats: true,
-																				 block: { _ in
-                        DispatchQueue.main.async {
-                            self.sendCommand()
-                        }
-					})
-					
-					if let completion = completion {
-						completion(error)
-					}
-				})
-			}
-			
-			flightController.startTakeoff(completion: delayedStartingCompletion)
+
+			self.rotateCamera(by: (-90, 0, 0)) {_ in}
+
+//			let delayedStartingCompletion = {(error: Error?) -> () in
+//				Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false, block: {_ in
+//
+//					DroneFlyController.sharedCommandTimer?.invalidate()
+//					DroneFlyController.sharedCommandTimer = Timer.scheduledTimer(withTimeInterval: 1.0/Double(DroneFlyController.commandsPerSecond),
+//																				 repeats: true,
+//																				 block: { _ in
+//                        DispatchQueue.main.async {
+//                            self.sendCommand()
+//                        }
+//					})
+//
+//					if let completion = completion {
+//						completion(error)
+//					}
+//				})
+//			}
+//
+//			flightController.startTakeoff(completion: delayedStartingCompletion)
 		}
     }
     

@@ -10,15 +10,19 @@ import Foundation
 import DJISDK
 
 extension DroneManager {
-	func pointCamera(to orientation: (pitch: Double, roll: Double, yaw: Double), completion: @escaping (Error?) -> ()) {
+	func rotateCamera(by orientation: (pitch: Double, roll: Double, yaw: Double), completion: @escaping (Error?) -> ()) {
 		DJISDKManager.product()?.gimbal?.rotate(
 			with: DJIGimbalRotation(pitchValue: NSNumber(value: orientation.pitch),
 				rollValue: NSNumber(value: orientation.roll),
 				yawValue: NSNumber(value: orientation.yaw),
 				time: 1.0,
-				mode: DJIGimbalRotationMode.absoluteAngle
+				mode: DJIGimbalRotationMode.relativeAngle
 			),
-			completion: completion
+			completion: { error in
+				print(error)
+				completion(error)
+			}
 		)
+		
 	}
 }

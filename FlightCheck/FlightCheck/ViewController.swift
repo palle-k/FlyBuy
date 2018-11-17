@@ -19,6 +19,16 @@ class ViewController: UIViewController {
 	
 	private var isBusy = false
 	
+	@IBOutlet weak var commandLabel: UILabel!
+	@IBOutlet weak var positionLabel: UILabel!
+	
+	@IBAction func cameraDown(_ sender: Any) {
+		DroneManager.shared.rotateCamera(by: (-90, 0, 0)) { _ in }
+	}
+	
+	@IBAction func cameraForward(_ sender: Any) {
+		DroneManager.shared.rotateCamera(by: (90, 0, 0)) { _ in }
+	}
 	
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .lightContent
@@ -27,29 +37,34 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		DJIVideoPreviewer.instance().setView(view)
+		DroneManager.shared.addImageListener(self)
 		
-//		navigator.onExecuteCommand = { [weak self] command in
-//			guard let `self` = self else {
-//				return
-//			}
-//			DispatchQueue.main.async {
-//				let description = """
-//				\(dateFormatter.string(from: Date()))
-//				\(self.navigator.state)
-//				\(command)
-//				"""
-//				self.debugLabel.text = description
-//			}
-//		}
-//
-//		navigator.onLocation = { [weak self] x, y, r in
-//			guard let `self` = self else {
-//				return
-//			}
-//			DispatchQueue.main.async {
-//				self.positionLabel.text = "x: \(numberFormatter.string(from: NSNumber(value: x))!), y: \(numberFormatter.string(from: NSNumber(value: y))!), r: \(numberFormatter.string(from: NSNumber(value: r))!)"
-//			}
-//		}
+		flightCoordinator.onExecuteCommand = { [weak self] command in
+			guard let `self` = self else {
+				return
+			}
+			DispatchQueue.main.async {
+				let description = """
+				\(dateFormatter.string(from: Date()))
+				\(command)
+				"""
+				self.commandLabel.text = description
+			}
+		}
+
+		flightCoordinator.onLocation = { [weak self] position, rotation in
+			guard let `self` = self else {
+				return
+			}
+			DispatchQueue.main.async {
+				self.positionLabel.text = """
+				x: \(numberFormatter.string(from: NSNumber(value: position.x))!)
+				y: \(numberFormatter.string(from: NSNumber(value: position.y))!)
+				z: \(numberFormatter.string(from: NSNumber(value: position.z))!)
+				r: \(numberFormatter.string(from: NSNumber(value: rotation))!)
+				"""
+			}
+		}
 		
 		flightCoordinator.onCode = { [weak self] observations in
 			self?.didDetect(observations: observations)
@@ -64,6 +79,47 @@ class ViewController: UIViewController {
 		
 		view.layer.addSublayer(shapeLayer)
 		viewDidLayoutSubviews()
+		
+		flightCoordinator.path = [
+			DroneScanningPathSegment(
+				target: DroneTarget(
+					destination: Position3D(x: 1, y: 1, z: 1),
+					orientation: 0,
+					desiredHorizontalAccuracy: 0.1,
+					desiredVerticalAccuracy: 0.1,
+					desiredAngularAccuracy: 0.2
+				),
+				operation: .approach
+			),
+			DroneScanningPathSegment(
+				target: DroneTarget(
+					destination: Position3D(x: 3, y: 1, z: 1),
+					orientation: 0,
+					desiredHorizontalAccuracy: 0.1,
+					desiredVerticalAccuracy: 0.1,
+					desiredAngularAccuracy: 0.2
+				),
+				operation: .approach
+			),
+			DroneScanningPathSegment(
+				target: DroneTarget(
+					destination: Position3D(x: 2, y: 1, z: 1),
+					orientation: 0,
+					desiredHorizontalAccuracy: 0.1,
+					desiredVerticalAccuracy: 0.1,
+					desiredAngularAccuracy: 0.2
+				),
+				operation: .approach
+			)
+		]
+	}
+	
+	@IBAction func landDrone(_ sender: Any) {
+		flightCoordinator.abort()
+	}
+	
+	@IBAction func beginFlight(_ sender: Any) {
+		flightCoordinator.begin()
 	}
 }
 
@@ -76,7 +132,9 @@ extension ViewController: DroneImageListener {
 		isBusy = true
 		
 		DispatchQueue.global().async {
-			self.flightCoordinator.update(with: image)
+			self.flightCoordinator.update(with: image) {
+				self.isBusy = false
+			}
 		}
 	}
 	

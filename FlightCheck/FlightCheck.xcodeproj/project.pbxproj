@@ -23,6 +23,9 @@
 		E673F315219F9FC7005296C1 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F314219F9FC7005296C1 /* Utility.swift */; };
 		E673F319219FAC3C005296C1 /* FlightPathNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F318219FAC3C005296C1 /* FlightPathNavigator.swift */; };
 		E673F31B219FCAD4005296C1 /* DroneManager+CameraCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F31A219FCAD4005296C1 /* DroneManager+CameraCommand.swift */; };
+		E673F31E21A047F7005296C1 /* StateHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F31D21A047F7005296C1 /* StateHandlers.swift */; };
+		E673F32021A0486E005296C1 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F31F21A0486E005296C1 /* States.swift */; };
+		E673F32221A04AEC005296C1 /* FlightCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F32121A04AEC005296C1 /* FlightCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,9 @@
 		E673F314219F9FC7005296C1 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		E673F318219FAC3C005296C1 /* FlightPathNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightPathNavigator.swift; sourceTree = "<group>"; };
 		E673F31A219FCAD4005296C1 /* DroneManager+CameraCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DroneManager+CameraCommand.swift"; sourceTree = "<group>"; };
+		E673F31D21A047F7005296C1 /* StateHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateHandlers.swift; sourceTree = "<group>"; };
+		E673F31F21A0486E005296C1 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		E673F32121A04AEC005296C1 /* FlightCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				E673F318219FAC3C005296C1 /* FlightPathNavigator.swift */,
+				E673F31D21A047F7005296C1 /* StateHandlers.swift */,
+				E673F31F21A0486E005296C1 /* States.swift */,
+				E673F32121A04AEC005296C1 /* FlightCoordinator.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -264,8 +273,11 @@
 				E673F30E219F9F86005296C1 /* DronePositionDetector.swift in Sources */,
 				E673F2DC219F9C8D005296C1 /* AppDelegate.swift in Sources */,
 				E673F30C219F9F77005296C1 /* QRCodeFormat.swift in Sources */,
+				E673F32221A04AEC005296C1 /* FlightCoordinator.swift in Sources */,
+				E673F31E21A047F7005296C1 /* StateHandlers.swift in Sources */,
 				E673F2FB219F9E52005296C1 /* DroneManager+FlyCommand.swift in Sources */,
 				E673F31B219FCAD4005296C1 /* DroneManager+CameraCommand.swift in Sources */,
+				E673F32021A0486E005296C1 /* States.swift in Sources */,
 				E673F315219F9FC7005296C1 /* Utility.swift in Sources */,
 				E673F319219FAC3C005296C1 /* FlightPathNavigator.swift in Sources */,
 				E673F2FA219F9E52005296C1 /* Transformation.swift in Sources */,
