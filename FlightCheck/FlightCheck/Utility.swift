@@ -69,3 +69,10 @@ let dateFormatter: DateFormatter = {
 	formatter.dateFormat = "HH:mm:ss"
 	return formatter
 }()
+
+
+struct Position3D: Hashable, Codable {
+	var x: Double
+	var y: Double
+	var z: Double
+}

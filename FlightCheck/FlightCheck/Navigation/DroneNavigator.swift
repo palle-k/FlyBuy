@@ -23,24 +23,7 @@ enum DroneNavigationState: String, Codable {
 	case emergency
 }
 
-struct DroneFrame {
-	var image: CGImage
-	var qrObservations: [QRCodeObservation]
-	var rotation: Double?
-	var location: (x: Double, y: Double)?
-	var estimatedHeight: Double?
-}
 
-enum DroneFlightCommand: Equatable {
-	case rotate(Double)
-	case translateHorizontal(x: Double, y: Double)
-	case translate(x: Double, y: Double, z: Double, r: Double)
-	case transformWithFixedHeight(x: Double, y: Double, height: Double, r: Double)
-	case fixHeight(Double)
-	case liftOff
-	case land
-	case hover
-}
 
 extension DroneFlightCommand: CustomStringConvertible {
 	var description: String {
