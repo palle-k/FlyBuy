@@ -10,16 +10,16 @@ import Foundation
 import Moya
 
 enum UploadService {
-    case uploadImage(name: String, session_id: String, img: UIImage)
-    case start(session_id: String)
-    case stop(session_id: String)
-    case getFlightPath(path_id: String)
+    case uploadImage(name: String, session_id: Int, img: UIImage)
+    case start()
+    case stop(session_id: Int)
+    case getFlightPath(path_id: Int)
 }
 
 extension UploadService: TargetType {
     
     var baseURL: URL {
-        return URL(string: "http://131.159.207.140")!
+        return URL(string: "http://131.159.207.140:5000")!
     }
     
     var parameterEncoding: Moya.ParameterEncoding {
@@ -28,8 +28,8 @@ extension UploadService: TargetType {
     
     var path: String {
         switch self {
-        case .uploadImage(_, _, _): return "/images"
-        case .start(_): return "/sessions"
+        case .uploadImage(_, _, _, _): return "/images"
+        case .start(): return "/sessions"
         case .stop(_): return "/sessions"
         case .getFlightPath(_): return "/flightpaths"
         }
@@ -37,7 +37,7 @@ extension UploadService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .uploadImage(_, _, _), .start(_), .stop(_):
+        case .uploadImage(_, _, _, _, _), .start(), .stop(_):
             return .post
         case .getFlightPath(_):
             return .get
@@ -53,8 +53,8 @@ extension UploadService: TargetType {
         switch self {
         case let .uploadImage(name, session_id, img):
             return Task.requestParameters(parameters: ["name": name, "session_id": session_id, "img": img], encoding: URLEncoding.queryString)
-        case let .start(session_id):
-            return Task.requestParameters(parameters: ["session_id": session_id], encoding: URLEncoding.queryString)
+        case .start():
+            return Task.requestParameters(parameters: [:], encoding: URLEncoding.queryString)
         case let .stop(session_id):
             return Task.requestParameters(parameters: ["session_id": session_id], encoding: URLEncoding.queryString)
         case let .getFlightPath(path_id):
