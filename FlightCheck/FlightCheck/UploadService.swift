@@ -10,16 +10,16 @@ import Foundation
 import Moya
 
 enum UploadService {
-    case uploadImage(name: String, session_id: Int, img: UIImage, pos: Position3D)
+    case uploadImage(name: String, sessionId: Int, img: CGImage, pos: Position3D)
     case start()
-    case stop(session_id: Int)
-    case getFlightPath(path_id: Int)
+    case stop(sessionId: Int)
+    case getFlightPath(pathId: Int)
 }
 
 extension UploadService: TargetType {
     
     var baseURL: URL {
-        return URL(string: "http://131.159.207.140:5000")!
+        return URL(string: "http://127.0.0.1:5000")!
     }
     
     var parameterEncoding: Moya.ParameterEncoding {
@@ -49,16 +49,19 @@ extension UploadService: TargetType {
     }
     
     var task: Task {
-        // TODO
         switch self {
-        case let .uploadImage(name, session_id, img, pos):
-            return Task.requestParameters(parameters: ["name": name, "session_id": session_id, "img": img], encoding: URLEncoding.queryString)
+        case let .uploadImage(name, sessionId, img, pos):
+            guard let imgJpg = (UIImage(cgImage: img) as UIImage).jpegData(compressionQuality: 1.0) else {
+                return Task.requestPlain
+            }
+            let imageStr = imgJpg.base64EncodedString()
+            return Task.requestParameters(parameters: ["name": name, "session_id": sessionId, "img": imageStr, "pos": pos], encoding: URLEncoding.queryString)
         case .start():
             return Task.requestParameters(parameters: [:], encoding: URLEncoding.queryString)
-        case let .stop(session_id):
-            return Task.requestParameters(parameters: ["session_id": session_id], encoding: URLEncoding.queryString)
-        case let .getFlightPath(path_id):
-            return Task.requestParameters(parameters: ["path_id": path_id], encoding: URLEncoding.queryString)
+        case let .stop(sessionId):
+            return Task.requestParameters(parameters: ["session_id": sessionId], encoding: URLEncoding.queryString)
+        case let .getFlightPath(pathId):
+            return Task.requestParameters(parameters: ["path_id": pathId], encoding: URLEncoding.queryString)
         }
     }
     
@@ -79,11 +82,11 @@ private extension String {
 
 fileprivate struct ImageUploadRequestBody: Codable {
     var name: String?
-    var img: Data?
-    var session_id: String?
-    var path_id: String?
+    var img: String?
+    var sessionId: String?
+    var pathId: String?
     
     private enum CodingKeys: String, CodingKey {
-        case name, img, session_id, path_id
+        case name, img, sessionId, pathId
     }
 }
