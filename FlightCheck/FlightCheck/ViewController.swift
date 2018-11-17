@@ -17,9 +17,7 @@ class ViewController: UIViewController {
 	
 	private var shapeLayer: CAShapeLayer!
 	
-	private var navigator = DroneNavigator(path: DroneNavigationPath(landing: (x: 0.0, y: 0.0)))
-	private let qrDetector = QRCodeDetector()
-	private let positionDetector = DronePositionDetector()
+	private var flightCoordinator = FlightCoordinator(path: [])
 	
 	private var isBusy = false
 	
@@ -54,7 +52,7 @@ class ViewController: UIViewController {
 //			}
 //		}
 		
-		navigator.onCode = { [weak self] observations in
+		flightCoordinator.onCode = { [weak self] observations in
 			self?.didDetect(observations: observations)
 		}
 		
@@ -79,9 +77,7 @@ extension ViewController: DroneImageListener {
 		isBusy = true
 		
 		DispatchQueue.global().async {
-			self.navigator.update(with: image) {
-				self.isBusy = false
-			}
+			self.flightCoordinator.update(with: image)
 		}
 	}
 	

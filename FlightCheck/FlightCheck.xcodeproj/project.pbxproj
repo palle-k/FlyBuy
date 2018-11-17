@@ -21,9 +21,9 @@
 		E673F30B219F9F77005296C1 /* QRCodeDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F309219F9F77005296C1 /* QRCodeDetector.swift */; };
 		E673F30C219F9F77005296C1 /* QRCodeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F30A219F9F77005296C1 /* QRCodeFormat.swift */; };
 		E673F30E219F9F86005296C1 /* DronePositionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F30D219F9F86005296C1 /* DronePositionDetector.swift */; };
-		E673F312219F9FAF005296C1 /* NavigationStateHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F310219F9FAE005296C1 /* NavigationStateHandlers.swift */; };
-		E673F313219F9FAF005296C1 /* DroneNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F311219F9FAF005296C1 /* DroneNavigator.swift */; };
 		E673F315219F9FC7005296C1 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F314219F9FC7005296C1 /* Utility.swift */; };
+		E673F319219FAC3C005296C1 /* FlightPathNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F318219FAC3C005296C1 /* FlightPathNavigator.swift */; };
+		E673F31B219FCAD4005296C1 /* DroneManager+CameraCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F31A219FCAD4005296C1 /* DroneManager+CameraCommand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,9 +45,9 @@
 		E673F309219F9F77005296C1 /* QRCodeDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeDetector.swift; sourceTree = "<group>"; };
 		E673F30A219F9F77005296C1 /* QRCodeFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeFormat.swift; sourceTree = "<group>"; };
 		E673F30D219F9F86005296C1 /* DronePositionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DronePositionDetector.swift; sourceTree = "<group>"; };
-		E673F310219F9FAE005296C1 /* NavigationStateHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStateHandlers.swift; sourceTree = "<group>"; };
-		E673F311219F9FAF005296C1 /* DroneNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneNavigator.swift; sourceTree = "<group>"; };
 		E673F314219F9FC7005296C1 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		E673F318219FAC3C005296C1 /* FlightPathNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightPathNavigator.swift; sourceTree = "<group>"; };
+		E673F31A219FCAD4005296C1 /* DroneManager+CameraCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DroneManager+CameraCommand.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +121,7 @@
 				E673F2F4219F9E51005296C1 /* DroneManager.swift */,
 				E673F2F7219F9E51005296C1 /* DroneManager+FlyCommand.swift */,
 				E673F2F5219F9E51005296C1 /* DroneManager+ImageProvider.swift */,
+				E673F31A219FCAD4005296C1 /* DroneManager+CameraCommand.swift */,
 				E673F2F6219F9E51005296C1 /* Transformation.swift */,
 			);
 			path = DroneManager;
@@ -139,8 +140,7 @@
 		E673F30F219F9F9D005296C1 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				E673F311219F9FAF005296C1 /* DroneNavigator.swift */,
-				E673F310219F9FAE005296C1 /* NavigationStateHandlers.swift */,
+				E673F318219FAC3C005296C1 /* FlightPathNavigator.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -271,11 +271,12 @@
 				E673F2DE219F9C8D005296C1 /* ViewController.swift in Sources */,
 				E673F2F9219F9E51005296C1 /* DroneManager+ImageProvider.swift in Sources */,
 				E673F30E219F9F86005296C1 /* DronePositionDetector.swift in Sources */,
-				E673F313219F9FAF005296C1 /* DroneNavigator.swift in Sources */,
 				E673F2DC219F9C8D005296C1 /* AppDelegate.swift in Sources */,
 				E673F30C219F9F77005296C1 /* QRCodeFormat.swift in Sources */,
 				E673F2FB219F9E52005296C1 /* DroneManager+FlyCommand.swift in Sources */,
+				E673F31B219FCAD4005296C1 /* DroneManager+CameraCommand.swift in Sources */,
 				E673F315219F9FC7005296C1 /* Utility.swift in Sources */,
+				E673F319219FAC3C005296C1 /* FlightPathNavigator.swift in Sources */,
 				E673F2FA219F9E52005296C1 /* Transformation.swift in Sources */,
 				81ADB3E7219FCB5200B0B394 /* UploadService.swift in Sources */,
 				E673F312219F9FAF005296C1 /* NavigationStateHandlers.swift in Sources */,
