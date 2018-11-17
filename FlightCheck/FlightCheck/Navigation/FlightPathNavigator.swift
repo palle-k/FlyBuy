@@ -39,13 +39,42 @@ enum DroneCameraCommand: String, Hashable {
 }
 
 
-enum DroneScanningNavigationState: String, Hashable {
-	case idle
-	case unknown
-	case navigating
+enum DroneNavigationState: String, Hashable {
+	case approaching
 	case scanning
-	case done
-	case emergency
+}
+
+extension DroneFlightCommand: CustomStringConvertible {
+	var description: String {
+		switch self {
+		case .rotate(let angle):
+			return "rotate(\(numberFormatter.string(from: NSNumber(value: angle))!))"
+		case .translateHorizontal(x: let x, y: let y):
+			let xs = numberFormatter.string(from: NSNumber(value: x))!
+			let ys = numberFormatter.string(from: NSNumber(value: y))!
+			return "translateHorizontal(x: \(xs), y: \(ys))"
+		case .translate(x: let x, y: let y, z: let z, r: let r):
+			let xs = numberFormatter.string(from: NSNumber(value: x))!
+			let ys = numberFormatter.string(from: NSNumber(value: y))!
+			let zs = numberFormatter.string(from: NSNumber(value: z))!
+			let rs = numberFormatter.string(from: NSNumber(value: r))!
+			return "translate(x: \(xs), y: \(ys), z: \(zs), r: \(rs))"
+		case .transformWithFixedHeight(x: let x, y: let y, height: let z, r: let r):
+			let xs = numberFormatter.string(from: NSNumber(value: x))!
+			let ys = numberFormatter.string(from: NSNumber(value: y))!
+			let zs = numberFormatter.string(from: NSNumber(value: z))!
+			let rs = numberFormatter.string(from: NSNumber(value: r))!
+			return "transformWithFixedHeight(x: \(xs), y: \(ys), z: \(zs), r: \(rs))"
+		case .liftOff:
+			return "liftOff"
+		case .land:
+			return "land"
+		case .hover:
+			return "hover"
+		case .fixHeight(let height):
+			return "fixHeight(\(height))"
+		}
+	}
 }
 
 
@@ -235,7 +264,7 @@ class DronePictureCoordinator: StateHandler {
 			let picture = frame.image
 			print(picture)
 			
-			// if picture is bad, state = .shootingPicture
+			// if picture is bad then state = .shootingPicture
 			
 			execute(.pointDown) {
 				self.state = .completed
@@ -261,10 +290,46 @@ class DronePictureCoordinator: StateHandler {
 	}
 }
 
+class DroneIdleStateCoordinator: StateHandler {
+	func enter() {
+		DroneManager.shared.landDrone()
+	}
+	
+	func exit() {
+		// pass
+	}
+	
+	func update(with frame: DroneFrame, destination: DroneScanningPathSegment) {
+		// pass
+	}
+	
+	func isCompleted(by frame: DroneFrame, destination: DroneScanningPathSegment) -> Bool {
+		return false
+	}
+}
+
+class DroneEmergencyCoordinator: StateHandler {
+	func enter() {
+		DroneManager.shared.landDrone()
+	}
+	
+	func exit() {
+		// pass
+	}
+	
+	func update(with frame: DroneFrame, destination: DroneScanningPathSegment) {
+		DroneManager.shared.landDrone()
+	}
+	
+	func isCompleted(by frame: DroneFrame, destination: DroneScanningPathSegment) -> Bool {
+		return false
+	}
+}
+
 
 class DroneScanningNavigator {
 	private(set) var droneState: DroneState = .idle
-	
+	private(set) var navigationState: DroneNavigationState = .approaching
 	
 	var path: [DroneScanningPathSegment] {
 		didSet {
@@ -277,23 +342,63 @@ class DroneScanningNavigator {
 	}
 	private(set) var pathIndex: Int? = nil
 	
+	var pathElement: DroneScanningPathSegment? {
+		return pathIndex.map {path[$0]}
+	}
+	
+	private var stateHandler: StateHandler = DroneIdleStateCoordinator() {
+		willSet {
+			stateHandler.exit()
+		}
+		didSet {
+			stateHandler.enter()
+		}
+	}
+	
 	init(path: [DroneScanningPathSegment]) {
 		self.path = path
 	}
 	
 	func beginNavigation() {
-		
+		droneState = .flying
+		pathIndex = 0
 	}
 	
 	func performEmergencyLanding() {
-		
+		droneState = .emergency
+		stateHandler = DroneEmergencyCoordinator()
 	}
 	
 	func update(with frame: DroneFrame) {
+		guard let pathElement = pathIndex.map({path[$0]}) else {
+			if droneState == .emergency {
+				DroneManager.shared.landDrone()
+			}
+			return
+		}
 		
+		if stateHandler.isCompleted(by: frame, destination: pathElement) {
+			switch (navigationState, pathElement.operation, pathIndex) {
+			case (.approaching, .approach, let index?), (.scanning, .scan, let index?):
+				navigationState = .approaching
+				pathIndex = index + 1
+				if path.indices ~= index + 1 {
+					droneState = .flying
+					stateHandler = DronePositionCoordinator()
+				} else {
+					droneState = .idle
+					stateHandler = DroneIdleStateCoordinator()
+				}
+				
+			case (.approaching, .scan, _):
+				navigationState = .scanning
+				stateHandler = DronePictureCoordinator()
+				
+			default:
+				break
+			}
+		}
+		
+		stateHandler.update(with: frame, destination: self.pathElement ?? pathElement)
 	}
-	
-	
-	
-	
 }

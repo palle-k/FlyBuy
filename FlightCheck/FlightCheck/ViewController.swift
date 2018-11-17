@@ -15,7 +15,7 @@ class ViewController: UIViewController {
 	
 	private var shapeLayer: CAShapeLayer!
 	
-	private var navigator = DroneNavigator(path: DroneNavigationPath(landing: (x: 0.0, y: 0.0)))
+//	private var navigator = DroneNavigator(path: DroneNavigationPath(landing: (x: 0.0, y: 0.0)))
 	private let qrDetector = QRCodeDetector()
 	private let positionDetector = DronePositionDetector()
 	
