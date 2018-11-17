@@ -1,0 +1,512 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CCA709899C4FFC4B78FB1A9D /* Pods_FlightCheck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145B5E673017F2D24A5D16E2 /* Pods_FlightCheck.framework */; };
+		E673F2DC219F9C8D005296C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F2DB219F9C8D005296C1 /* AppDelegate.swift */; };
+		E673F2DE219F9C8D005296C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F2DD219F9C8D005296C1 /* ViewController.swift */; };
+		E673F2E1219F9C8D005296C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E673F2DF219F9C8D005296C1 /* Main.storyboard */; };
+		E673F2E3219F9C8E005296C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E673F2E2219F9C8E005296C1 /* Assets.xcassets */; };
+		E673F2E6219F9C8E005296C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E673F2E4219F9C8E005296C1 /* LaunchScreen.storyboard */; };
+		E673F2F8219F9E51005296C1 /* DroneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F2F4219F9E51005296C1 /* DroneManager.swift */; };
+		E673F2F9219F9E51005296C1 /* DroneManager+ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F2F5219F9E51005296C1 /* DroneManager+ImageProvider.swift */; };
+		E673F2FA219F9E52005296C1 /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F2F6219F9E51005296C1 /* Transformation.swift */; };
+		E673F2FB219F9E52005296C1 /* DroneManager+FlyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F2F7219F9E51005296C1 /* DroneManager+FlyCommand.swift */; };
+		E673F303219F9ECB005296C1 /* VideoPreviewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E673F302219F9EC1005296C1 /* VideoPreviewer.framework */; };
+		E673F30B219F9F77005296C1 /* QRCodeDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F309219F9F77005296C1 /* QRCodeDetector.swift */; };
+		E673F30C219F9F77005296C1 /* QRCodeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F30A219F9F77005296C1 /* QRCodeFormat.swift */; };
+		E673F30E219F9F86005296C1 /* DronePositionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F30D219F9F86005296C1 /* DronePositionDetector.swift */; };
+		E673F312219F9FAF005296C1 /* NavigationStateHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F310219F9FAE005296C1 /* NavigationStateHandlers.swift */; };
+		E673F313219F9FAF005296C1 /* DroneNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F311219F9FAF005296C1 /* DroneNavigator.swift */; };
+		E673F315219F9FC7005296C1 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E673F314219F9FC7005296C1 /* Utility.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E673F301219F9EC1005296C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E673F2FD219F9EC0005296C1 /* VideoPreviewer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 02A543FD1C3C51CB0083C11B;
+			remoteInfo = VideoPreviewer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		145B5E673017F2D24A5D16E2 /* Pods_FlightCheck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightCheck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90916D783A65D625E8DEB974 /* Pods-FlightCheck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightCheck.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlightCheck/Pods-FlightCheck.release.xcconfig"; sourceTree = "<group>"; };
+		E52200FDBCB48E2508EE56F6 /* Pods-FlightCheck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightCheck.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlightCheck/Pods-FlightCheck.debug.xcconfig"; sourceTree = "<group>"; };
+		E673F2D8219F9C8D005296C1 /* FlightCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlightCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E673F2DB219F9C8D005296C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E673F2DD219F9C8D005296C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E673F2E0219F9C8D005296C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E673F2E2219F9C8E005296C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E673F2E5219F9C8E005296C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E673F2E7219F9C8E005296C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E673F2F4219F9E51005296C1 /* DroneManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneManager.swift; sourceTree = "<group>"; };
+		E673F2F5219F9E51005296C1 /* DroneManager+ImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DroneManager+ImageProvider.swift"; sourceTree = "<group>"; };
+		E673F2F6219F9E51005296C1 /* Transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
+		E673F2F7219F9E51005296C1 /* DroneManager+FlyCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DroneManager+FlyCommand.swift"; sourceTree = "<group>"; };
+		E673F2FD219F9EC0005296C1 /* VideoPreviewer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VideoPreviewer.xcodeproj; path = ../Frameworks/VideoPreviewer/VideoPreviewer.xcodeproj; sourceTree = "<group>"; };
+		E673F309219F9F77005296C1 /* QRCodeDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeDetector.swift; sourceTree = "<group>"; };
+		E673F30A219F9F77005296C1 /* QRCodeFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeFormat.swift; sourceTree = "<group>"; };
+		E673F30D219F9F86005296C1 /* DronePositionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DronePositionDetector.swift; sourceTree = "<group>"; };
+		E673F310219F9FAE005296C1 /* NavigationStateHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStateHandlers.swift; sourceTree = "<group>"; };
+		E673F311219F9FAF005296C1 /* DroneNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneNavigator.swift; sourceTree = "<group>"; };
+		E673F314219F9FC7005296C1 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E673F2D5219F9C8D005296C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E673F303219F9ECB005296C1 /* VideoPreviewer.framework in Frameworks */,
+				CCA709899C4FFC4B78FB1A9D /* Pods_FlightCheck.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2AE3370DB8A80AD5FB1D82E6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E52200FDBCB48E2508EE56F6 /* Pods-FlightCheck.debug.xcconfig */,
+				90916D783A65D625E8DEB974 /* Pods-FlightCheck.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4D8493286981E5130465614F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E673F2FD219F9EC0005296C1 /* VideoPreviewer.xcodeproj */,
+				145B5E673017F2D24A5D16E2 /* Pods_FlightCheck.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E673F2CF219F9C8D005296C1 = {
+			isa = PBXGroup;
+			children = (
+				E673F2DA219F9C8D005296C1 /* FlightCheck */,
+				E673F2D9219F9C8D005296C1 /* Products */,
+				2AE3370DB8A80AD5FB1D82E6 /* Pods */,
+				4D8493286981E5130465614F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E673F2D9219F9C8D005296C1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E673F2D8219F9C8D005296C1 /* FlightCheck.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E673F2DA219F9C8D005296C1 /* FlightCheck */ = {
+			isa = PBXGroup;
+			children = (
+				E673F30F219F9F9D005296C1 /* Navigation */,
+				E673F307219F9F64005296C1 /* Positioning */,
+				E673F2FC219F9E56005296C1 /* DroneManager */,
+				E673F2DB219F9C8D005296C1 /* AppDelegate.swift */,
+				E673F2DD219F9C8D005296C1 /* ViewController.swift */,
+				E673F2DF219F9C8D005296C1 /* Main.storyboard */,
+				E673F2E2219F9C8E005296C1 /* Assets.xcassets */,
+				E673F2E4219F9C8E005296C1 /* LaunchScreen.storyboard */,
+				E673F2E7219F9C8E005296C1 /* Info.plist */,
+				E673F314219F9FC7005296C1 /* Utility.swift */,
+			);
+			path = FlightCheck;
+			sourceTree = "<group>";
+		};
+		E673F2FC219F9E56005296C1 /* DroneManager */ = {
+			isa = PBXGroup;
+			children = (
+				E673F2F4219F9E51005296C1 /* DroneManager.swift */,
+				E673F2F7219F9E51005296C1 /* DroneManager+FlyCommand.swift */,
+				E673F2F5219F9E51005296C1 /* DroneManager+ImageProvider.swift */,
+				E673F2F6219F9E51005296C1 /* Transformation.swift */,
+			);
+			path = DroneManager;
+			sourceTree = "<group>";
+		};
+		E673F2FE219F9EC0005296C1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E673F302219F9EC1005296C1 /* VideoPreviewer.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E673F307219F9F64005296C1 /* Positioning */ = {
+			isa = PBXGroup;
+			children = (
+				E673F30D219F9F86005296C1 /* DronePositionDetector.swift */,
+				E673F309219F9F77005296C1 /* QRCodeDetector.swift */,
+				E673F30A219F9F77005296C1 /* QRCodeFormat.swift */,
+			);
+			path = Positioning;
+			sourceTree = "<group>";
+		};
+		E673F30F219F9F9D005296C1 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				E673F311219F9FAF005296C1 /* DroneNavigator.swift */,
+				E673F310219F9FAE005296C1 /* NavigationStateHandlers.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E673F2D7219F9C8D005296C1 /* FlightCheck */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E673F2EA219F9C8E005296C1 /* Build configuration list for PBXNativeTarget "FlightCheck" */;
+			buildPhases = (
+				0E3DC9DF7808F6A24B8FAAFF /* [CP] Check Pods Manifest.lock */,
+				E673F2D4219F9C8D005296C1 /* Sources */,
+				E673F2D5219F9C8D005296C1 /* Frameworks */,
+				E673F2D6219F9C8D005296C1 /* Resources */,
+				CC7EFF7A5255ECA253F5816F /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FlightCheck;
+			productName = FlightCheck;
+			productReference = E673F2D8219F9C8D005296C1 /* FlightCheck.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E673F2D0219F9C8D005296C1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = FlightCheck;
+				TargetAttributes = {
+					E673F2D7219F9C8D005296C1 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = E673F2D3219F9C8D005296C1 /* Build configuration list for PBXProject "FlightCheck" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E673F2CF219F9C8D005296C1;
+			productRefGroup = E673F2D9219F9C8D005296C1 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E673F2FE219F9EC0005296C1 /* Products */;
+					ProjectRef = E673F2FD219F9EC0005296C1 /* VideoPreviewer.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				E673F2D7219F9C8D005296C1 /* FlightCheck */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E673F302219F9EC1005296C1 /* VideoPreviewer.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VideoPreviewer.framework;
+			remoteRef = E673F301219F9EC1005296C1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E673F2D6219F9C8D005296C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E673F2E6219F9C8E005296C1 /* LaunchScreen.storyboard in Resources */,
+				E673F2E3219F9C8E005296C1 /* Assets.xcassets in Resources */,
+				E673F2E1219F9C8D005296C1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0E3DC9DF7808F6A24B8FAAFF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlightCheck-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC7EFF7A5255ECA253F5816F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FlightCheck/Pods-FlightCheck-frameworks.sh",
+				"${PODS_ROOT}/DJI-SDK-iOS/iOS_Mobile_SDK/DJISDK.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DJISDK.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FlightCheck/Pods-FlightCheck-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E673F2D4219F9C8D005296C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E673F2F8219F9E51005296C1 /* DroneManager.swift in Sources */,
+				E673F2DE219F9C8D005296C1 /* ViewController.swift in Sources */,
+				E673F2F9219F9E51005296C1 /* DroneManager+ImageProvider.swift in Sources */,
+				E673F30E219F9F86005296C1 /* DronePositionDetector.swift in Sources */,
+				E673F313219F9FAF005296C1 /* DroneNavigator.swift in Sources */,
+				E673F2DC219F9C8D005296C1 /* AppDelegate.swift in Sources */,
+				E673F30C219F9F77005296C1 /* QRCodeFormat.swift in Sources */,
+				E673F2FB219F9E52005296C1 /* DroneManager+FlyCommand.swift in Sources */,
+				E673F315219F9FC7005296C1 /* Utility.swift in Sources */,
+				E673F2FA219F9E52005296C1 /* Transformation.swift in Sources */,
+				E673F312219F9FAF005296C1 /* NavigationStateHandlers.swift in Sources */,
+				E673F30B219F9F77005296C1 /* QRCodeDetector.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E673F2DF219F9C8D005296C1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E673F2E0219F9C8D005296C1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E673F2E4219F9C8E005296C1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E673F2E5219F9C8E005296C1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E673F2E8219F9C8E005296C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E673F2E9219F9C8E005296C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E673F2EB219F9C8E005296C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E52200FDBCB48E2508EE56F6 /* Pods-FlightCheck.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WCM2L8RG39;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = FlightCheck/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.flightcheck.FlightCheck;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E673F2EC219F9C8E005296C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90916D783A65D625E8DEB974 /* Pods-FlightCheck.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WCM2L8RG39;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = FlightCheck/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.flightcheck.FlightCheck;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E673F2D3219F9C8D005296C1 /* Build configuration list for PBXProject "FlightCheck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E673F2E8219F9C8E005296C1 /* Debug */,
+				E673F2E9219F9C8E005296C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E673F2EA219F9C8E005296C1 /* Build configuration list for PBXNativeTarget "FlightCheck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E673F2EB219F9C8E005296C1 /* Debug */,
+				E673F2EC219F9C8E005296C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E673F2D0219F9C8D005296C1 /* Project object */;
+}
