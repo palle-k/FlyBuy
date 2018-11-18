@@ -258,7 +258,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Sets the charge mode of a connected iOS device.  Note: Android devices are
  *  always charging when connected to the remote controller. It is only supported by
- *  Inspire 2.
+ *  Inspire 2, M200 series, Cendence and Mavic 2 series.
  *  
  *  @param mode Charge Mobile mode.
  *  @param completion Completion block that receives the setter result.
@@ -269,7 +269,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Gets the mode to charge the connected iOS device. Note that Android devices are
  *  always charging when connected to the remote controller. It is only supported by
- *  Inspire 2.
+ *  Inspire 2, M200 series, Cendence, and Mavic 2 series.
  *  
  *  @param mode The mode to charge the connected iOS device.
  *  @param error Error retrieving the value.
@@ -504,13 +504,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  Called by the slave Remote Controller to request gimbal control from the master
- *  Remote Controller.
+ *  Remote Controller. It is only supported by Inspire 1 and DJI Lightbridge 2.
  *  
  *  @param result DJIRCRequestGimbalControlResult object.
  *  @param error Error retrieving the value.
  *  @param completion Remote execution result callback block.
  */
-- (void)requestGimbalControlWithCompletion:(void (^_Nonnull)(DJIRCRequestGimbalControlResult result, NSError *_Nullable error))completion;
+- (void)requestLegacyGimbalControlWithCompletion:(void (^_Nonnull)(DJIRCRequestGimbalControlResult result, NSError *_Nullable error))completion;
 
 
 /**
@@ -646,6 +646,18 @@ NS_ASSUME_NONNULL_BEGIN
             authorizationCode:(NSString *_Nullable)code
                withCompletion:(void (^_Nonnull)(DJIRCConnectToMasterResult result, NSError *_Nullable error))completion;
 
+
+/**
+ *  Requests the gimbal control from the other remote controller. Different  from
+ *  `requestLegacyGimbalControlWithCompletion`, the gimbal control  permission is
+ *  transferred to the remote controller without the reply from  the master remote
+ *  controller. The master remote controller can attain the  gimbal control back by
+ *  calling the same method. It is only supported by  Inspire 2, M200 series and
+ *  Cendence.
+ *  
+ *  @param completion The completion block.
+ */
+- (void)requestGimbalControlWithCompletion:(DJICompletionBlock)completion;
 
 /*********************************************************************************/
 #pragma mark Custom buttons (Cendence)

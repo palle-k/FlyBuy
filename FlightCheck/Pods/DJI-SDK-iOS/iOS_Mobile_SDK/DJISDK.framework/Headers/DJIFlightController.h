@@ -20,6 +20,7 @@
 @class DJISimulator;
 @class DJIAirSenseSystemInformation;
 @class DJIOnboardSDKDevice;
+@class DJIAccessLocker;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -165,6 +166,13 @@ typedef NS_ENUM (uint8_t, DJIConnectionFailSafeBehavior){
 
 
 /**
+ *  Gets the instance of the access locker. It is used to encapsulate the access
+ *  protection features on the aircraft.
+ */
+@property(nonatomic, readonly) DJIAccessLocker *accessLocker;
+
+
+/**
  *  Simulator object.
  */
 @property(nonatomic, readonly) DJISimulator *_Nullable simulator;
@@ -214,7 +222,7 @@ typedef NS_ENUM (uint8_t, DJIConnectionFailSafeBehavior){
 /**
  *  Sets the maximum flight radius limitation of the aircraft. The radius is
  *  calculated from the home point.  The <code>maxRadius</code> value must be in the
- *  range [15, 500] m.
+ *  range [15, 8000] m.
  *  
  *  @param maxRadius Maximum flight radius of the aircraft.
  *  @param completion Completion block.

@@ -99,5 +99,4 @@ typedef void (^_Nullable DJIAccountStateCompletionBlock)(DJIUserAccountState sta
  */
 -(void)logOutOfDJIUserAccountWithCompletion:(DJICompletionBlock)completion;
 
-
 @end

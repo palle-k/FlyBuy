@@ -80,6 +80,20 @@ FOUNDATION_EXPORT NSString *_Nonnull const DJISDKFlightHubErrorDomain;
  */
 FOUNDATION_EXPORT NSString *_Nonnull const DJITakeOffActionErrorDomain;
 
+
+/**
+ *  The error domain used to describe errors produced by the
+ *  `DJIAccessoryAggregation` object.
+ */
+FOUNDATION_EXPORT NSString *_Nonnull const DJIAccessoryAggregationErrorDomain;
+
+
+/**
+ *  The error domain used to describe errors produced by the `DJIAccessLocker`
+ *  object.
+ */
+FOUNDATION_EXPORT NSString *_Nonnull const DJIAccessLockerErrorDomain;
+
 /*********************************************************************************/
 #pragma mark DJISDKRegistrationError
 /*********************************************************************************/
@@ -1407,6 +1421,223 @@ typedef NS_ENUM(NSInteger, DJITakeOffActionError) {
 };
 
 
+/*********************************************************************************/
+#pragma mark Upgrade Error
+/*********************************************************************************/
+
+//hidden-WM245
+/**
+ *  DJI SDK Upgrade Error.
+ */
+typedef NS_ENUM(NSInteger, DJISDKUpgradeError){
+	//hidden-WM245
+	/**
+	 *	固件已经下载，不需要再重复下载
+	 */
+	DJISDKUpgradeErrorFirmwareAlreadyDownloaded = -10001L,
+
+	//hidden-WM245
+	/**
+	 *	固件已经下载，不需要再重复下载
+	 */
+	DJISDKUpgradeErrorFirmwareDownloadFailed = -10002L,
+	
+	//hidden-WM245
+	/**
+	 *	固件传输失败。
+	 */
+	DJISDKUpgradeErrorFirmwareFirmwareTransferFailed = -10003L,
+	
+	//hidden-WM245
+	/**
+	 *	固件传入取消
+	 */
+	DJISDKUpgradeErrorFirmwareFirmwareTransferCanceled = -10004L,
+	
+	//hidden-WM245
+	/**
+	 *	固件版本号不一致
+	 */
+	DJISDKUpgradeErrorFirmwareFirmwareVersionNotSame = -10005L,
+	
+    //hidden-WM245
+    /**
+     *  需要直连飞机才允许升级
+     */
+    DJISDKUpgradeErrorAircraftNeedDirectConnected = -10006L,
+    
+    //hidden-WM245
+    /**
+     *  当前飞机电池电量过低
+     */
+    DJISDKUpgradeErrorAircraftLowElectricityNow = -10007L,
+    
+    //hidden-WM245
+    /**
+     * 当前遥控器电池电量过低
+     */
+    DJISDKUpgradeErrorRCLowElectricityNow = -10008L,
+    
+    //hidden-WM245
+    /**
+     *  电机处于起桨状态
+     */
+    DJISDKUpgradeErrorDeviceMotorOn = -10009L,
+    
+	//hidden-WM245
+	/**
+	 *	Unknown Error
+	 */
+	DJISDKUpgradeErrorUnknown = -11000L,
+};
+
+/*********************************************************************************/
+#pragma mark Accessory Error
+/*********************************************************************************/
+
+
+/**
+ *  Errors related to accessories on the aircraft (e.g. spotlights, speakers).
+ */
+typedef NS_ENUM(NSInteger, DJIAccessoryAggregationError) {
+
+    /**
+     *  The accessory is not connected. Also update the implementation.
+     */
+    DJIAccessoryAggregationErrorNotConnected = -8000L,
+
+    /**
+     *  The file name exceeds the maximum length (20 characters).
+     */
+    DJIAccessoryAggregationErrorFileNameLengthInvalid = -8001L,
+
+    /**
+     *  The file name is already taken in the aircraft. Choose a different file name.
+     */
+    DJIAccessoryAggregationErrorFileNameDuplicated = -8002L,
+
+    /**
+     *  A file name cannot be empty.
+     */
+    DJIAccessoryAggregationErrorFileNameEmpty = -8003L,
+
+    /**
+     *  The file does not exist in the aircraft.
+     */
+    DJIAccessoryAggregationErrorFileNotExist = -8004L,
+
+    /**
+     *  An error occurs when creating the file.
+     */
+    DJIAccessoryAggregationErrorFileCreated = -8005L,
+
+    /**
+     *  There is no more file index available for the file.
+     */
+    DJIAccessoryAggregationErrorFileIndexUnavailable = -8006L,
+
+    /**
+     *  Error occurs when renaming the file.
+     */
+    DJIAccessoryAggregationErrorRenameFile = -8007L,
+
+    /**
+     *  The connection of the speaker is broken and data transmission cannot start.
+     */
+    DJIAccessoryAggregationErrorDataTransmissionDisconnection = -8008L,
+
+    /**
+     *  The data transimission operation cannot be executed in the current state.
+     */
+    DJIAccessoryAggregationErrorWrongDataTransmissionState = -8009L,
+
+    /**
+     *  Data validation failed. Data is corrupted during the transmission.
+     */
+    DJIAccessoryAggregationErrorDataCorruption = -8010L,
+
+    /**
+     *  The ongoing data transmission is cancelled.
+     */
+    DJIAccessoryAggregationErrorCancelledByUser = -8011L,
+
+    /**
+     *  The ongoing data transmission is interrupted by timeout error.
+     */
+    DJIAccessoryAggregationErrorInterruptedByTimeout = -8012L,
+
+    /**
+     *  The storage is full.
+     */
+    DJIAccessoryAggregationErrorStorageFull = -8013L,
+};
+
+/*********************************************************************************/
+#pragma mark AccessLocker Error
+/*********************************************************************************/
+
+
+/**
+ *  Errors related to the access locker.
+ */
+typedef NS_ENUM(NSInteger, DJIAccessLockerError) {
+
+    /**
+     *  The command is not valid in current state.
+     */
+    DJIAccessLockerErrorInvalidState = -9000L,
+
+    /**
+     *  Write failure when updating data in the firmware.
+     */
+    DJIAccessLockerErrorFirmwareWrite = -9001L,
+
+    /**
+     *  Read failure when accessing data in the firmware.
+     */
+    DJIAccessLockerErrorFirmwareRead = -9002L,
+
+    /**
+     *  The Security Code is incorrect.
+     */
+    DJIAccessLockerErrorSecurityCodeIncorrect = -9003L,
+
+    /**
+     *  The user account is not set up for the security feature yet.
+     */
+    DJIAccessLockerErrorNotSetUp = -9004L,
+
+    /**
+     *  The aircraft is already unlocked.
+     */
+    DJIAccessLockerErrorAlreadyUnlocked = -9005L,
+
+    /**
+     *  Attempt with wrong Security Code more than 5 times. The aircraft is  disable and
+     *  try again in 1 minute.
+     */
+    DJIAccessLockerErrorSecurityCodeIncorrectFiveTimes = -9006L,
+
+    /**
+     *  Attempt with wrong Security Code more than 20 times. The aircraft is disable and
+     *  try again in 24 hours.
+     */
+    DJIAccessLockerErrorSecurityCodeIncorrectTwentyTimes = -9007L,
+
+    /**
+     *  The username does not exist.
+     */
+    DJIAccessLockerErrorUsernameNotExist = -9008L,
+
+    /**
+     *  The new security code is not valid. A valid security code should contain only
+     *  numbers and letters and  its length is not less than 4 characters and not longer
+     *  than 8 characters.
+     */
+    DJIAccessLockerErrorSecurityCodeFormatInvalid = -9009L,
+};
+
+
 /**
  *  NSError's DJISDK category. It contains methods to create custom NSErrors.
  */
@@ -1477,11 +1708,31 @@ typedef NS_ENUM(NSInteger, DJITakeOffActionError) {
  *  Returns the specific error in the `DJISDKFlightHubError` according to the error
  *  code.
  *  
- *  @param errorCode errorCode for `DJIFlightHubError`.
+ *  @param errorCode errorCode for `DJISDKFlightHubError`.
  *  
  *  @return An NSError object initialized with errorCode. If the errorCode was 0, returns nil.
  */
 + (_Nullable instancetype)DJISDKFlightHubErrorForCode:(DJISDKFlightHubError)errorCode;
+
+
+/**
+ *  Get DJIAccessoryAggregationError.
+ *  
+ *  @param errorCode errorCode for `DJIAccessoryAggregationError`.
+ *  
+ *  @return An NSError object initialized with errorCode. If the errorCode was 0, returns nil.
+ */
++ (_Nullable instancetype)DJIAccessoryAggregationErrorForCode:(DJIAccessoryAggregationError)errorCode;
+
+
+/**
+ *  Get DJIAccessoryAggregationError.
+ *  
+ *  @param errorCode errorCode for `DJIAccessoryAggregationError`.
+ *  
+ *  @return An NSError object initialized with errorCode. If the errorCode was 0, returns nil.
+ */
++ (_Nullable instancetype)DJIAccessLockerErrorForCode:(DJIAccessLockerError)errorCode;
 
 
 /**

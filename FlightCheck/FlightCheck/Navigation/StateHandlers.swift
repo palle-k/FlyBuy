@@ -45,7 +45,7 @@ class DronePositionCoordinator: StateHandler {
 	
 	func update(with frame: DroneFrame, destination: DroneTarget) -> DroneFlightCommand? {
 		guard let location = frame.location, let rotation = frame.rotation else {
-			return nil
+			return .hover
 		}
 		let dx = destination.destination.x - location.x
 		let dy = destination.destination.y - location.y
@@ -57,11 +57,13 @@ class DronePositionCoordinator: StateHandler {
 		
 		let dr = destination.orientation - rotation
 		
+		let rotationRate = abs(dr) < destination.desiredAngularAccuracy ? 0 : dr * -1.5
+		
 		let operation: DroneFlightCommand = .transformWithFixedHeight(
 			x: rotDx / 3 + sgn(rotDx) * 0.1, // add minimum speed with sign
 			y: rotDy / 3 + sgn(rotDy) * 0.1, // add minimum speed with sign
 			height: destination.destination.z,
-			r: dr * 5
+			r: rotationRate
 		)
 		
 		return operation

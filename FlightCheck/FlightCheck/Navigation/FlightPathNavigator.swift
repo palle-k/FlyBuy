@@ -96,8 +96,16 @@ struct DroneScanningPathSegment: Equatable {
 extension DroneScanningPathSegment: Codable {}
 
 class FlightPathNavigator {
-	private(set) var droneState: DroneState = .idle
-	private(set) var navigationState: DroneNavigationState = .approaching
+	private(set) var droneState: DroneState = .idle {
+		didSet {
+			print("Drone State: \(droneState)")
+		}
+	}
+	private(set) var navigationState: DroneNavigationState = .approaching {
+		didSet {
+			print("Navigation State: \(navigationState)")
+		}
+	}
 	
 	var onExecuteCommand: ((DroneFlightCommand) -> ())?
 	
@@ -110,10 +118,14 @@ class FlightPathNavigator {
 			}
 		}
 	}
-	private(set) var pathIndex: Int? = nil
+	private(set) var pathIndex: Int? = nil {
+		didSet {
+			print("Path index: \(pathIndex.map(String.init) ?? "nil")")
+		}
+	}
 	
 	var pathElement: DroneScanningPathSegment? {
-		return pathIndex.map {path[$0]}
+		return pathIndex.flatMap {path.indices.contains($0) ? path[$0] : nil}
 	}
 	
 	private var stateHandler: StateHandler = DroneIdleStateCoordinator() {
@@ -133,6 +145,7 @@ class FlightPathNavigator {
 		pathIndex = 0
 		onExecuteCommand?(.liftOff)
 		DroneManager.shared.liftoffDrone()
+		stateHandler = DronePositionCoordinator()
 	}
 	
 	func performEmergencyLanding() {
@@ -142,7 +155,7 @@ class FlightPathNavigator {
 	}
 	
 	func update(with frame: DroneFrame) {
-		guard let pathElement = pathIndex.map({path[$0]}) else {
+		guard let pathElement = self.pathElement else {
 			if droneState == .emergency {
 				DroneManager.shared.landDrone()
 			}

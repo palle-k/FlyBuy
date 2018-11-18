@@ -156,47 +156,76 @@ extension DroneManager {
     
     func setupFlightControl() {
         guard let flightController = drone?.flightController else {
+			print("Flight controller does not exist")
             return
         }
-        
-        flightController.setVirtualStickModeEnabled(true)
+		
         flightController.rollPitchCoordinateSystem = .body
         flightController.setFlightOrientationMode(.aircraftHeading)
-		flightController.flightAssistant?.setActiveObstacleAvoidanceEnabled(true, withCompletion: nil)
-		flightController.flightAssistant?.setCollisionAvoidanceEnabled(true, withCompletion: nil)
-		flightController.setVisionAssistedPositioningEnabled(true, withCompletion: nil)
-		flightController.flightAssistant?.setUpwardsAvoidanceEnabled(true, withCompletion: nil)
+//		flightController.flightAssistant?.setActiveObstacleAvoidanceEnabled(false) { error in
+//			print("Active Obstacle Avoidance: \(String(describing: error))")
+//			flightController.flightAssistant?.setCollisionAvoidanceEnabled(false) { error in
+//				print("Collision Avoidance: \(String(describing: error))")
+//				flightController.setVisionAssistedPositioningEnabled(true) { error in
+//					print("Vision Assisted Positioning: \(String(describing: error))")
+//					flightController.flightAssistant?.setUpwardsAvoidanceEnabled(true) { error in
+//						print("Upwards Avoidance: \(String(describing: error))")
+//
+//					}
+//				}
+//			}
+//		}
+		
+		print("Virtual Stick Available: \(flightController.isVirtualStickControlModeAvailable())")
+		
+		flightController.setVirtualStickModeEnabled(true) { (error) in
+			print("Virtual Stick Mode: \(String(describing: error))")
+			print("Virtual Stick Available: \(flightController.isVirtualStickControlModeAvailable())")
+			
+			
+		}
+
+		
+//		flightController.setNoviceModeEnabled(false, withCompletion: nil)
+		
+//		flightController.setVirtualStickModeEnabled(true, withCompletion: nil)
+//		flightController.setControlMode(.smart, withCompletion: nil)
+		
+		
     }
     
     func liftoffDrone(completion: ((Error?) -> ())? = nil) {
 		print("[WARNING] Liftoff Enabled")
+		
+		setupFlightControl()
+		print("Virtual Stick Mode: ", self.drone?.flightController?.isVirtualStickAdvancedModeEnabled)
 		
 		DispatchQueue.main.async {
 			guard let flightController = self.drone?.flightController else {
 				return
 			}
 
-			self.rotateCamera(by: (-90, 0, 0)) {_ in}
+//			self.rotateCamera(by: (-90, 0, 0)) {_ in}
 
-//			let delayedStartingCompletion = {(error: Error?) -> () in
-//				Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false, block: {_ in
-//
-//					DroneFlyController.sharedCommandTimer?.invalidate()
-//					DroneFlyController.sharedCommandTimer = Timer.scheduledTimer(withTimeInterval: 1.0/Double(DroneFlyController.commandsPerSecond),
-//																				 repeats: true,
-//																				 block: { _ in
-//                        DispatchQueue.main.async {
-//                            self.sendCommand()
-//                        }
-//					})
-//
-//					if let completion = completion {
-//						completion(error)
-//					}
-//				})
-//			}
-//
-//			flightController.startTakeoff(completion: delayedStartingCompletion)
+			let delayedStartingCompletion = {(error: Error?) -> () in
+				Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false, block: {_ in
+
+					DroneFlyController.sharedCommandTimer?.invalidate()
+					DroneFlyController.sharedCommandTimer = Timer.scheduledTimer(withTimeInterval: 1.0/Double(DroneFlyController.commandsPerSecond),
+																				 repeats: true,
+																				 block: { _ in
+                        DispatchQueue.main.async {
+                            self.sendCommand()
+                        }
+					})
+
+					if let completion = completion {
+						completion(error)
+					}
+				})
+			}
+
+			flightController.startTakeoff(completion: delayedStartingCompletion)
 		}
     }
     
@@ -240,8 +269,10 @@ extension DroneManager {
     }
     
     func transform(withDirection direction: CGVector, momentum: Float, atHeight height: Float) {
-        DroneFlyController.currentCommand.velocity = .twoDVelocity(Velocity(direction),
-                                                                   atHeight: .fixed(height: height))
+        DroneFlyController.currentCommand.velocity = .twoDVelocity(
+			Velocity(direction),
+			atHeight: .fixed(height: height)
+		)
         DroneFlyController.currentCommand.rotation = .momentum(momentum)
     }
     
@@ -259,10 +290,12 @@ extension DroneManager {
 		flightController.yawControlMode = currentCommand.rotation.yawControlMode
 		flightController.verticalControlMode = currentCommand.velocity.verticalControlMode
 		
-		let stickFlightControlData = DJIVirtualStickFlightControlData(pitch: currentCommand.velocity.vx,
-																	  roll: currentCommand.velocity.vy,
-																	  yaw: currentCommand.rotation.yaw,
-																	  verticalThrottle: currentCommand.velocity.vz)
+		let stickFlightControlData = DJIVirtualStickFlightControlData(
+			pitch: currentCommand.velocity.vx,
+			roll: currentCommand.velocity.vy,
+			yaw: currentCommand.rotation.yaw,
+			verticalThrottle: currentCommand.velocity.vz
+		)
 		
 //		print(stickFlightControlData)
 		
@@ -271,5 +304,6 @@ extension DroneManager {
 				print("Could not send command: \(stickFlightControlData). ERROR: \(error.localizedDescription)")
 			}
 		}
+		
     }
 }

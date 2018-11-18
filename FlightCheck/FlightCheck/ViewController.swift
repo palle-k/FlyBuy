@@ -38,6 +38,7 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		DJIVideoPreviewer.instance().setView(view)
 		DroneManager.shared.addImageListener(self)
+//		DroneManager.shared.setupFlightControl()
 		
 		flightCoordinator.onExecuteCommand = { [weak self] command in
 			guard let `self` = self else {
@@ -83,35 +84,27 @@ class ViewController: UIViewController {
 		flightCoordinator.path = [
 			DroneScanningPathSegment(
 				target: DroneTarget(
-					destination: Position3D(x: 1, y: 1, z: 1),
+					destination: Position3D(x: 0, y: 0, z: 1.5),
 					orientation: 0,
-					desiredHorizontalAccuracy: 0.1,
-					desiredVerticalAccuracy: 0.1,
-					desiredAngularAccuracy: 0.2
+					desiredHorizontalAccuracy: 0.2,
+					desiredVerticalAccuracy: 0.2,
+					desiredAngularAccuracy: 0.5
 				),
-				operation: .approach
+				operation: .scan
 			),
 			DroneScanningPathSegment(
 				target: DroneTarget(
-					destination: Position3D(x: 3, y: 1, z: 1),
+					destination: Position3D(x: 2, y: 0, z: 1.5),
 					orientation: 0,
-					desiredHorizontalAccuracy: 0.1,
-					desiredVerticalAccuracy: 0.1,
-					desiredAngularAccuracy: 0.2
+					desiredHorizontalAccuracy: 0.2,
+					desiredVerticalAccuracy: 0.2,
+					desiredAngularAccuracy: 0.5
 				),
 				operation: .approach
 			),
-			DroneScanningPathSegment(
-				target: DroneTarget(
-					destination: Position3D(x: 2, y: 1, z: 1),
-					orientation: 0,
-					desiredHorizontalAccuracy: 0.1,
-					desiredVerticalAccuracy: 0.1,
-					desiredAngularAccuracy: 0.2
-				),
-				operation: .approach
-			)
 		]
+		
+		UIApplication.shared.isIdleTimerDisabled = true
 	}
 	
 	@IBAction func landDrone(_ sender: Any) {
