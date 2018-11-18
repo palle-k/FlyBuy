@@ -108,7 +108,7 @@ class FlightPathNavigator {
 	}
 	
 	var onExecuteCommand: ((DroneFlightCommand) -> ())?
-	var onImageCaptured: ((CGImage) -> ())?
+	var onImageCaptured: ((CGImage, DroneTarget) -> ())?
 	
 	var path: [DroneScanningPathSegment] {
 		didSet {

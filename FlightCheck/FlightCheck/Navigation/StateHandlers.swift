@@ -129,7 +129,7 @@ class DronePositionCoordinator: StateHandler {
 
 class DronePictureCoordinator: StateHandler {
 	var onExecuteCommand: ((DroneFlightCommand) -> ())?
-	var pictureHandler: ((CGImage) -> ())?
+	var pictureHandler: ((CGImage, DroneTarget) -> ())?
 	
 	private var state: ScanningState = .pointingCamera
 	
@@ -152,7 +152,7 @@ class DronePictureCoordinator: StateHandler {
 			
 			let picture = frame.image
 			print("Picture taken")
-			pictureHandler?(picture)
+			pictureHandler?(picture, destination.target)
 			
 			// if picture is bad then state = .shootingPicture
 			

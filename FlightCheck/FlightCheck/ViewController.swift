@@ -71,8 +71,9 @@ class ViewController: UIViewController {
 			self?.didDetect(observations: observations)
 		}
 		
-		flightCoordinator.onImageCaptured = { [weak self] image in
+		flightCoordinator.onImageCaptured = { [weak self] image, target in
 			//TODO: Upload Image To Server
+			
 		}
 		
 		shapeLayer = CAShapeLayer()

@@ -28,7 +28,7 @@ class FlightCoordinator {
 		}
 	}
 	
-	var onImageCaptured: ((CGImage) -> ())? {
+	var onImageCaptured: ((CGImage, DroneTarget) -> ())? {
 		get {
 			return navigator.onImageCaptured
 		}
