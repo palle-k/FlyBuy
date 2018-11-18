@@ -21,6 +21,7 @@ class ViewController: UIViewController {
 	
 	@IBOutlet weak var commandLabel: UILabel!
 	@IBOutlet weak var positionLabel: UILabel!
+	@IBOutlet weak var stateLabel: UILabel!
 	
 	@IBAction func cameraDown(_ sender: Any) {
 		DroneManager.shared.rotateCamera(by: (-90, 0, 0)) { _ in }
@@ -132,6 +133,12 @@ extension ViewController: DroneImageListener {
 		DispatchQueue.global().async {
 			self.flightCoordinator.update(with: image) {
 				self.isBusy = false
+				DispatchQueue.main.async {
+					self.stateLabel.text = """
+					Drone: \(self.flightCoordinator.navigator.droneState)
+					Nav: \(self.flightCoordinator.navigator.navigationState) (idx: \(self.flightCoordinator.navigator.pathIndex.map(String.init) ?? "none"))
+					"""
+				}
 			}
 		}
 	}
