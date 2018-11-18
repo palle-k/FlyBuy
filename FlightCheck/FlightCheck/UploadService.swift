@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum UploadService {
-    case uploadImage(name: String, sessionId: Int, img: CGImage, pos: Position3D)
+    case uploadImage(name: String, sessionId: Int, img: CGImage, pos: Position3D, angle: Double)
     case start()
     case stop(sessionId: Int)
     case getFlightPath(pathId: Int)
@@ -28,7 +28,7 @@ extension UploadService: TargetType {
     
     var path: String {
         switch self {
-        case .uploadImage(_, _, _, _): return "/images"
+        case .uploadImage(_, _, _, _, _): return "/images"
         case .start(): return "/sessions"
         case .stop(_): return "/sessions"
         case .getFlightPath(_): return "/flightpaths"
@@ -37,7 +37,7 @@ extension UploadService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .uploadImage(_, _, _, _), .start(), .stop(_):
+        case .uploadImage(_, _, _, _, _), .start(), .stop(_):
             return .post
         case .getFlightPath(_):
             return .get
@@ -50,12 +50,12 @@ extension UploadService: TargetType {
     
     var task: Task {
         switch self {
-        case let .uploadImage(name, sessionId, img, pos):
+        case let .uploadImage(name, sessionId, img, pos, angle):
             guard let imgJpg = (UIImage(cgImage: img) as UIImage).jpegData(compressionQuality: 1.0) else {
                 return Task.requestPlain
             }
             let imageStr = imgJpg.base64EncodedString()
-            return Task.requestParameters(parameters: ["name": name, "session_id": sessionId, "img": imageStr, "pos": pos], encoding: URLEncoding.queryString)
+            return Task.requestParameters(parameters: ["name": name, "session_id": sessionId, "img": imageStr, "pos": pos, "angle": angle], encoding: URLEncoding.queryString)
         case .start():
             return Task.requestParameters(parameters: [:], encoding: URLEncoding.queryString)
         case let .stop(sessionId):
@@ -77,16 +77,5 @@ private extension String {
     
     var utf8Encoded: Data {
         return data(using: .utf8)!
-    }
-}
-
-fileprivate struct ImageUploadRequestBody: Codable {
-    var name: String?
-    var img: String?
-    var sessionId: String?
-    var pathId: String?
-    
-    private enum CodingKeys: String, CodingKey {
-        case name, img, sessionId, pathId
     }
 }
