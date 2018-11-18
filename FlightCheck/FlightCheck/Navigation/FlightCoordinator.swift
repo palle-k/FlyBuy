@@ -12,7 +12,7 @@ import UIKit
 
 
 class FlightCoordinator {
-	private let navigator: FlightPathNavigator
+	let navigator: FlightPathNavigator
 	private let positionDetector = DronePositionDetector()
 	private let qrDetector = QRCodeDetector()
 	
