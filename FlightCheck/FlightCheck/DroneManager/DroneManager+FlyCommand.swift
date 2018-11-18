@@ -207,25 +207,25 @@ extension DroneManager {
 
 //			self.rotateCamera(by: (-90, 0, 0)) {_ in}
 
-			let delayedStartingCompletion = {(error: Error?) -> () in
-				Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false, block: {_ in
-
-					DroneFlyController.sharedCommandTimer?.invalidate()
-					DroneFlyController.sharedCommandTimer = Timer.scheduledTimer(withTimeInterval: 1.0/Double(DroneFlyController.commandsPerSecond),
-																				 repeats: true,
-																				 block: { _ in
-                        DispatchQueue.main.async {
-                            self.sendCommand()
-                        }
-					})
-
-					if let completion = completion {
-						completion(error)
-					}
-				})
-			}
-
-			flightController.startTakeoff(completion: delayedStartingCompletion)
+//			let delayedStartingCompletion = {(error: Error?) -> () in
+//				Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false, block: {_ in
+//
+//					DroneFlyController.sharedCommandTimer?.invalidate()
+//					DroneFlyController.sharedCommandTimer = Timer.scheduledTimer(withTimeInterval: 1.0/Double(DroneFlyController.commandsPerSecond),
+//																				 repeats: true,
+//																				 block: { _ in
+//                        DispatchQueue.main.async {
+//                            self.sendCommand()
+//                        }
+//					})
+//
+//					if let completion = completion {
+//						completion(error)
+//					}
+//				})
+//			}
+//
+//			flightController.startTakeoff(completion: delayedStartingCompletion)
 		}
     }
     

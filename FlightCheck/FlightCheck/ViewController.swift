@@ -71,6 +71,10 @@ class ViewController: UIViewController {
 			self?.didDetect(observations: observations)
 		}
 		
+		flightCoordinator.onImageCaptured = { [weak self] image in
+			//TODO: Upload Image To Server
+		}
+		
 		shapeLayer = CAShapeLayer()
 		shapeLayer.frame = view.bounds
 		shapeLayer.strokeColor = UIColor.red.cgColor
@@ -84,7 +88,7 @@ class ViewController: UIViewController {
 		flightCoordinator.path = [
 			DroneScanningPathSegment(
 				target: DroneTarget(
-					destination: Position3D(x: 0, y: 0, z: 1.5),
+					destination: Position3D(x: 2, y: 0, z: 1),
 					orientation: 0,
 					desiredHorizontalAccuracy: 0.2,
 					desiredVerticalAccuracy: 0.2,
@@ -94,7 +98,7 @@ class ViewController: UIViewController {
 			),
 			DroneScanningPathSegment(
 				target: DroneTarget(
-					destination: Position3D(x: 2, y: 0, z: 1.5),
+					destination: Position3D(x: 0, y: 0, z: 1.5),
 					orientation: 0,
 					desiredHorizontalAccuracy: 0.2,
 					desiredVerticalAccuracy: 0.2,

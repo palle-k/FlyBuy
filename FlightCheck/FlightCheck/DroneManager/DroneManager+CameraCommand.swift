@@ -19,8 +19,15 @@ extension DroneManager {
 				mode: DJIGimbalRotationMode.relativeAngle
 			),
 			completion: { error in
-				print(error)
-				completion(error)
+				if let error = error {
+					print("Camera rotated: \(error)")
+					completion(error)
+				} else {
+					DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1200), execute: {
+						print("Camera rotated")
+						completion(nil)
+					})
+				}
 			}
 		)
 		

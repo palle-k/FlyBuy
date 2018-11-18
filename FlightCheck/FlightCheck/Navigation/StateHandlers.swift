@@ -129,11 +129,12 @@ class DronePositionCoordinator: StateHandler {
 
 class DronePictureCoordinator: StateHandler {
 	var onExecuteCommand: ((DroneFlightCommand) -> ())?
+	var pictureHandler: ((CGImage) -> ())?
 	
 	private var state: ScanningState = .pointingCamera
 	
 	func enter() {
-		state = .shootingPicture
+		state = .pointingCamera
 		execute(.pointForward) {
 			self.state = .shootingPicture
 		}
@@ -150,7 +151,8 @@ class DronePictureCoordinator: StateHandler {
 			state = .pictureShot // prevent further pictures from being taken
 			
 			let picture = frame.image
-			print(picture)
+			print("Picture taken")
+			pictureHandler?(picture)
 			
 			// if picture is bad then state = .shootingPicture
 			
@@ -171,7 +173,7 @@ class DronePictureCoordinator: StateHandler {
 				completion()
 			}
 		case .pointForward:
-			DroneManager.shared.rotateCamera(by: (0, 0, 0)) { _ in
+			DroneManager.shared.rotateCamera(by: (90, 0, 0)) { _ in
 				completion()
 			}
 		}

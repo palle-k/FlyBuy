@@ -28,6 +28,15 @@ class FlightCoordinator {
 		}
 	}
 	
+	var onImageCaptured: ((CGImage) -> ())? {
+		get {
+			return navigator.onImageCaptured
+		}
+		set {
+			navigator.onImageCaptured = newValue
+		}
+	}
+	
 	var onCode: (([QRCodeObservation]) -> ())? = nil
 	
 	var onLocation: ((Position3D, Double) -> ())? = nil

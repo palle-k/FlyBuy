@@ -108,6 +108,7 @@ class FlightPathNavigator {
 	}
 	
 	var onExecuteCommand: ((DroneFlightCommand) -> ())?
+	var onImageCaptured: ((CGImage) -> ())?
 	
 	var path: [DroneScanningPathSegment] {
 		didSet {
@@ -177,7 +178,9 @@ class FlightPathNavigator {
 				
 			case (.approaching, .scan, _):
 				navigationState = .scanning
-				stateHandler = DronePictureCoordinator()
+				let handler = DronePictureCoordinator()
+				handler.pictureHandler = onImageCaptured
+				stateHandler = handler
 				
 			default:
 				break
