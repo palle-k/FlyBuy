@@ -23,6 +23,11 @@ class ViewController: UIViewController {
     
     private var provider = MoyaProvider<UploadService>()
     private var imageId = 0
+    
+    private var eanEvaluator = EANEvaluator()
+    private var eanDetector = EANDetector()
+    
+    private var onCode: (([EANCodeObservation]) -> ())? = nil
 	
 	@IBOutlet weak var commandLabel: UILabel!
 	@IBOutlet weak var positionLabel: UILabel!
@@ -94,6 +99,18 @@ class ViewController: UIViewController {
                     print(error)
                     return
                 }
+            }
+            
+            do {
+                try self?.eanDetector.detect(in: CIImage(cgImage: image)) {
+                    observations in let observations = observations
+                    self?.onCode?(observations)
+                    self?.eanEvaluator.update(with: observations) {
+                        print($0 ?? "no observation")
+                    }
+                }
+            } catch {
+                print(error)
             }
 		}
 		
