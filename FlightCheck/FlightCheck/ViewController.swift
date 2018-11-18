@@ -9,6 +9,8 @@
 import UIKit
 import DJIWidget
 import DJISDK
+import Moya
+import Alamofire
 
 
 class ViewController: UIViewController {
@@ -18,6 +20,9 @@ class ViewController: UIViewController {
 	private var flightCoordinator = FlightCoordinator(path: [])
 	
 	private var isBusy = false
+    
+    private var provider = MoyaProvider<UploadService>()
+    private var imageId = 0
 	
 	@IBOutlet weak var commandLabel: UILabel!
 	@IBOutlet weak var positionLabel: UILabel!
@@ -37,6 +42,7 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		DJIVideoPreviewer.instance().setView(view)
+
 		DroneManager.shared.addImageListener(self)
 //		DroneManager.shared.setupFlightControl()
 		
@@ -72,8 +78,22 @@ class ViewController: UIViewController {
 		}
 		
 		flightCoordinator.onImageCaptured = { [weak self] image, target in
-			//TODO: Upload Image To Server
-			
+            self?.provider.request(
+                .uploadImage(name: "img_\(self?.imageId)",
+                             sessionId: 1,
+                             img: image,
+                             pos: target.destination,
+                             angle: target.orientation
+            )) { result in
+                switch result {
+                case .success(let response):
+                    print(String(data: response.data, encoding: .utf8)!)
+                    self?.imageId += 1
+                case .failure(let error):
+                    print(error)
+                    return
+                }
+            }
 		}
 		
 		shapeLayer = CAShapeLayer()
